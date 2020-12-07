@@ -1,17 +1,12 @@
-import React from 'react'
+import React from 'react';
+import FilteringLists from './FilteringLists';
+import ShowingLists from './ShowingLists';
 
-function MainLists() {
+function MainLists({data}) {
     return (
         <main className="main">
-            <div>
-                <label htmlFor="input">
-                    <input type="text" id="input"/> Full time
-                </label>
-                <label htmlFor="location"> LOCATION
-                <input type="text" id="location"/>
-                </label>
-            </div>
-            <div></div>
+            <FilteringLists />
+            <ShowingLists data={data}/>
         </main>
     )
 }
