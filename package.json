@@ -1,11 +1,23 @@
 {
-  "name": "github-jobs",
+  "name": "github-job",
   "version": "1.0.0",
   "description": "Here we are, the last graded project of this semester.",
   "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "sass": "^1.29.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tanosimboangy/github-jobs.git"
@@ -15,9 +27,5 @@
   "bugs": {
     "url": "https://github.com/Tanosimboangy/github-jobs/issues"
   },
-  "homepage": "https://github.com/Tanosimboangy/github-jobs#readme",
-  "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  }
+  "homepage": "https://github.com/Tanosimboangy/github-jobs#readme"
 }

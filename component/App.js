@@ -1,10 +1,15 @@
 import React from 'react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-// import { ContextProvider } from './Context';
+import Header from "./Header";
+import MainLists from "./MainLists";
 
 function App() {
+
     return (
-        <h1>Hello world!</h1>
+        <>
+            <h1>Github Jobs</h1>
+            <Header />
+            <MainLists />
+        </>
     )
 }
 
