@@ -48,7 +48,6 @@ function FilteringLists() {
         dispatch({type: 'FILTERING_LOCATION_JOBS', locationfiltered: newLocatedJob})
     }
 
-
     // Filtering the jobs by the value of one of the four buttons
     function filteringJobs(e) {
         const el = e.target.value

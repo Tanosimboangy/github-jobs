@@ -6,7 +6,9 @@ import MainLists from "./MainLists";
 import { Context } from "./context";
 
 function App() {
+    // Accessing the state by using useContext
     const { state } = useContext(Context);
+    // Grab the data from the state
     const { data } = state
 
     return (

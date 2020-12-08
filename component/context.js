@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 const Context = React.createContext();
 import axios from "axios";
 
+// These links are the links for the cors and the cors
 const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
 const API_URL = "https://jobs.github.com/positions.json"
 
@@ -51,6 +52,7 @@ function ContextProvider({children}) {
       description: '',
     })
 
+    // Fetching the data with axios
     function fetchingJobsData() {
         axios
           .get(CORS_KEY + API_URL)
@@ -65,24 +67,6 @@ function ContextProvider({children}) {
       useEffect(() => {
         fetchingJobsData()
       }, [])
-
-      // const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
-      // const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`
-
-      // function fetchingfulltimeJobs() {
-      //   axios
-      //     .get(CORS_KEY + API_URLS)
-      //     .then(res => {
-      //       dispatch({ type: 'GETTING_FULL_TIME_JOBS', gettingFullTimeJobs : res.data })
-      //     })
-      //     .catch(error => {
-      //       dispatch({type : "FETCH_FAILED" })
-      //     })
-      // }
-
-      // useEffect(() => {
-      //   fetchingfulltimeJobs();
-      // }, [])
 
     return(
         <Context.Provider value={{state, dispatch}}>

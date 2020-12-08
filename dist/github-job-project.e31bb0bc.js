@@ -36055,6 +36055,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const Context = _react.default.createContext();
 
 exports.Context = Context;
+// These links are the links for the cors and the cors
 const CORS_KEY = "https://cors-anywhere.herokuapp.com/";
 const API_URL = "https://jobs.github.com/positions.json";
 
@@ -36111,7 +36112,7 @@ function ContextProvider({
     loading: true,
     loading: false,
     description: ''
-  });
+  }); // Fetching the data with axios
 
   function fetchingJobsData() {
     _axios.default.get(CORS_KEY + API_URL).then(res => {
@@ -36128,22 +36129,7 @@ function ContextProvider({
 
   (0, _react.useEffect)(() => {
     fetchingJobsData();
-  }, []); // const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
-  // const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`
-  // function fetchingfulltimeJobs() {
-  //   axios
-  //     .get(CORS_KEY + API_URLS)
-  //     .then(res => {
-  //       dispatch({ type: 'GETTING_FULL_TIME_JOBS', gettingFullTimeJobs : res.data })
-  //     })
-  //     .catch(error => {
-  //       dispatch({type : "FETCH_FAILED" })
-  //     })
-  // }
-  // useEffect(() => {
-  //   fetchingfulltimeJobs();
-  // }, [])
-
+  }, []);
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
       state,
@@ -38167,7 +38153,7 @@ function Header() {
   const {
     data
   } = state;
-  const [searchInput, setSearchInput] = (0, _react.useState)('');
+  const [searchInput, setSearchInput] = (0, _react.useState)(''); // Filtering the jobs by the title, name of the company and 
 
   function FilteringJobs(e) {
     e.preventDefault();
@@ -38491,6 +38477,7 @@ const DisplayListsContainerStyled = _styledComponents.default.div`
 function ShowingLists({
   data
 }) {
+  // Here where I display and show the list of the data
   return /*#__PURE__*/_react.default.createElement(DisplayListsContainerStyled, null, data.map(item => {
     return /*#__PURE__*/_react.default.createElement(DisplayListsStyled, {
       key: item.id
@@ -38587,9 +38574,11 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function App() {
+  // Accessing the state by using useContext
   const {
     state
-  } = (0, _react.useContext)(_context.Context);
+  } = (0, _react.useContext)(_context.Context); // Grab the data from the state
+
   const {
     data
   } = state;

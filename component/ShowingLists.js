@@ -29,6 +29,7 @@ const DisplayListsContainerStyled = styled.div`
 
 function ShowingLists({data}) {
 
+    // Here where I display and show the list of the data
     return (
         <DisplayListsContainerStyled>
          {data.map(item => {

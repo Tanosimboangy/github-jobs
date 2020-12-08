@@ -37,6 +37,7 @@ function Header() {
     const { data } = state;
     const [searchInput, setSearchInput] = useState('');
 
+    // Filtering the jobs by the title, name of the company and 
     function FilteringJobs(e) {
         e.preventDefault();
         const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(searchInput) || item.company.toLowerCase().includes(searchInput) || item.location.toLowerCase().includes(searchInput));  
