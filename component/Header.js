@@ -37,17 +37,16 @@ function Header() {
     const { data } = state;
     const [inputValue, setInputValue] = useState('');
 
-    function CheckFullTimeJob(e) {
+    function FilteringJobs(e) {
         e.preventDefault();
-        // const fullTimeJobs = data.filter(item => item.type === "Full Time")
-        const fullTimeJobs = data.filter(item => item.location === "New Work")
-        // dispatch({type:'FILTERING_FULL_TIME_JOBS', fultimefiltered})
+        const jobs = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));  
+        dispatch({type:'FILTERING_JOBS', filteredJobs: newLocatedJob})
         setInputValue("");
     }
 
     return (
         <FormHeader className="header">
-            <FormFiltering onSubmit={CheckFullTimeJob}>
+            <FormFiltering onSubmit={FilteringJobs}>
                 <img src={globe} alt="this is a globe"/>
                 <input
                     type="text" 

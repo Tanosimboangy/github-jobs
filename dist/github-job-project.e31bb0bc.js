@@ -36072,17 +36072,17 @@ function ContextProvider({
           };
         }
 
-      case 'GETTING_FULL_TIME_JOBS':
-        {
-          return { ...state,
-            data: action.gettingFullTimeJobs
-          };
-        }
-
       case 'FILTERING_LOCATION_JOBS':
         {
           return { ...state,
             data: action.locationfiltered
+          };
+        }
+
+      case 'FILTERING_JOBS':
+        {
+          return { ...state,
+            data: action.filteredJobs
           };
         }
 
@@ -36121,31 +36121,26 @@ function ContextProvider({
 
   (0, _react.useEffect)(() => {
     fetchingJobsData();
-  }, []);
-  const CORS_KEY = "https://cors-anywhere.herokuapp.com/";
-  const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`;
+  }, []); // const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
+  // const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`
+  // function fetchingfulltimeJobs() {
+  //   axios
+  //     .get(CORS_KEY + API_URLS)
+  //     .then(res => {
+  //       dispatch({ type: 'GETTING_FULL_TIME_JOBS', gettingFullTimeJobs : res.data })
+  //     })
+  //     .catch(error => {
+  //       dispatch({type : "FETCH_FAILED" })
+  //     })
+  // }
+  // useEffect(() => {
+  //   fetchingfulltimeJobs();
+  // }, [])
 
-  function fetchingfulltimeJobs() {
-    _axios.default.get(CORS_KEY + API_URLS).then(res => {
-      dispatch({
-        type: 'GETTING_FULL_TIME_JOBS',
-        gettingFullTimeJobs: res.data
-      });
-    }).catch(error => {
-      dispatch({
-        type: "FETCH_FAILED"
-      });
-    });
-  }
-
-  (0, _react.useEffect)(() => {
-    fetchingfulltimeJobs();
-  }, []);
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
       state,
-      dispatch,
-      fetchingfulltimeJobs
+      dispatch
     }
   }, children);
 }
@@ -38167,18 +38162,20 @@ function Header() {
   } = state;
   const [inputValue, setInputValue] = (0, _react.useState)('');
 
-  function CheckFullTimeJob(e) {
-    e.preventDefault(); // const fullTimeJobs = data.filter(item => item.type === "Full Time")
-
-    const fullTimeJobs = data.filter(item => item.location === "New Work"); // dispatch({type:'FILTERING_FULL_TIME_JOBS', fultimefiltered})
-
+  function FilteringJobs(e) {
+    e.preventDefault();
+    const jobs = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));
+    dispatch({
+      type: 'FILTERING_JOBS',
+      filteredJobs: newLocatedJob
+    });
     setInputValue("");
   }
 
   return /*#__PURE__*/_react.default.createElement(FormHeader, {
     className: "header"
   }, /*#__PURE__*/_react.default.createElement(FormFiltering, {
-    onSubmit: CheckFullTimeJob
+    onSubmit: FilteringJobs
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _globe.default,
     alt: "this is a globe"
@@ -38335,6 +38332,20 @@ const InputLocation = _styledComponents.default.div`
     flex-direction: column;
     padding-bottom: 20px;
     padding-top: 20px;
+    input {
+        border: none;
+        background-color: white;
+        padding: 16px;
+        font-size: 16px;
+        border-radius: 10px;
+        color: black;
+        max-width: 244px;
+        outline: none;
+        cursor: pointer;
+    }
+    input:focus, input:hover {
+        border: 1px solid blue;
+    }
 `;
 
 function FilteringLists() {
@@ -38346,26 +38357,10 @@ function FilteringLists() {
   const {
     data
   } = state;
-  console.log(data);
-
-  function filteringFullTimeJobs() {
-    const fullTimeJobs = data.filter(item => item.type === "Full Time");
-    dispatch({
-      type: 'FILTERING_FULL_TIME_JOBS',
-      fultimefiltered: fullTimeJobs
-    });
-  } //  company: "MapLarge, Inc."
-  //  company_logo: 
-  //  company_url: "http://MapLarge.com"
-  //  created_at: "Mon Dec 07 23:18:19 UTC 2020"
-  //  description: 
-  //  how_to_apply: "<p>Email your resume to <a href="mailto:jobs@maplarge.com">jobs@maplarge.com</a></p>↵"
-  //  id: "6ad65ab4-197e-4d05-b709-7674d448b031"
-  //  location: "United States"
-  //  title: "Senior Software Architect / Engineer who enjoys coding web services in c#"
-  //  type: "Full Time"
-  //  url: "https://jobs.gi
-
+  console.log(data); // function filteringFullTimeJobs() {
+  //     const fullTimeJobs = data.filter(item => item.type === "Full Time")
+  //     dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
+  // }
 
   function locationFiltering(e) {
     setLocationState(e.target.value);
@@ -38377,11 +38372,22 @@ function FilteringLists() {
     });
   }
 
+  function filteringJobs(e) {
+    const el = e.target.value;
+    console.log(el);
+    console.log("I am her");
+    const FilteredJobs = data.filter(item => item.title === el || item.company === el || item.location === el);
+    dispatch({
+      type: 'FILTERING_JOBS',
+      filteredJobs: FilteredJobs
+    });
+  }
+
   return /*#__PURE__*/_react.default.createElement(FilteringForm, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "input"
   }, /*#__PURE__*/_react.default.createElement("input", {
-    type: "checkbox",
-    onChange: filteringFullTimeJobs,
+    type: "checkbox" // onChange={filteringFullTimeJobs} 
+    ,
     id: "input"
   }), " Full time")), /*#__PURE__*/_react.default.createElement(InputLocation, null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "location"
@@ -38395,21 +38401,29 @@ function FilteringLists() {
     htmlFor: "London"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
+    onChange: filteringJobs,
+    value: "london",
     id: "London"
   }), " London")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "Asterdam"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
-    id: "Asterdam"
-  }), " Asterdam")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
+    onChange: filteringJobs,
+    value: "amsterdam",
+    id: "Amsterdam"
+  }), " Amsterdam")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "New_York"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
+    onChange: filteringJobs,
+    value: "new york",
     id: "New_York"
   }), " New Work")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "Berlin"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
+    onChange: locationFiltering,
+    value: "berlin",
     id: "Berlin"
   }), " Berlin"))));
 }

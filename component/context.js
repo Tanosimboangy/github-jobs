@@ -16,16 +16,16 @@ function ContextProvider({children}) {
                     loading: true,
                 }
             }
-            case 'GETTING_FULL_TIME_JOBS': {
-                return {
-                    ...state,
-                    data:  action.gettingFullTimeJobs,
-                }
-            }
             case 'FILTERING_LOCATION_JOBS': {
                 return {
                     ...state,
                     data:  action.locationfiltered,
+                }
+            }
+            case 'FILTERING_JOBS': {
+                return {
+                    ...state,
+                    data:  action.filteredJobs,
                 }
             }
             case 'FETCH_FAILED' : return {
@@ -60,26 +60,26 @@ function ContextProvider({children}) {
         fetchingJobsData()
       }, [])
 
-      const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
-      const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`
+      // const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
+      // const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`
 
-      function fetchingfulltimeJobs() {
-        axios
-          .get(CORS_KEY + API_URLS)
-          .then(res => {
-            dispatch({ type: 'GETTING_FULL_TIME_JOBS', gettingFullTimeJobs : res.data })
-          })
-          .catch(error => {
-            dispatch({type : "FETCH_FAILED" })
-          })
-      }
+      // function fetchingfulltimeJobs() {
+      //   axios
+      //     .get(CORS_KEY + API_URLS)
+      //     .then(res => {
+      //       dispatch({ type: 'GETTING_FULL_TIME_JOBS', gettingFullTimeJobs : res.data })
+      //     })
+      //     .catch(error => {
+      //       dispatch({type : "FETCH_FAILED" })
+      //     })
+      // }
 
-      useEffect(() => {
-        fetchingfulltimeJobs();
-      }, [])
+      // useEffect(() => {
+      //   fetchingfulltimeJobs();
+      // }, [])
 
     return(
-        <Context.Provider value={{state, dispatch, fetchingfulltimeJobs}}>
+        <Context.Provider value={{state, dispatch}}>
             {children}
         </Context.Provider>
     )
