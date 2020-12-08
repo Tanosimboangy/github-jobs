@@ -2,6 +2,9 @@ import React, { useEffect, useReducer } from 'react';
 const Context = React.createContext();
 import axios from "axios";
 
+const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
+const API_URL = "https://jobs.github.com/positions.json"
+
 function ContextProvider({children}) {
     const [state, dispatch] = useReducer((state, action) => {
         switch(action.type) {
@@ -25,13 +28,13 @@ function ContextProvider({children}) {
         }
         return state;
     }, {
-        data: [],
-        loading: true,
+      loading: true,
+      data: [ ],
     })
 
     function fetchingJobsData() {
         axios
-          .get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node')
+          .get(CORS_KEY + API_URL)
           .then(res => {
             dispatch({ type: 'FETCHING_DATA', playload : res.data })
           })

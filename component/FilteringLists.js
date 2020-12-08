@@ -3,8 +3,14 @@ import styled from 'styled-components';
 import { Context } from './context';
 
 const FilteringForm = styled.div`
-    padding: 10px;
-    margin-bottom: 26px;
+    padding-left: 12px;
+    padding-bottom: 25px;
+`
+const InputLocation = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding-top: 20px;
 `
 
 function FilteringLists() {
@@ -15,14 +21,13 @@ function FilteringLists() {
         <FilteringForm>
             <div>
                 <label htmlFor="input">
-                <input type="text" id="input"/> Full time
+                <input type="checkbox" id="input"/> Full time
                 </label>
             </div>
-            <div>
-                <label htmlFor="location"> LOCATION
-                <input type="checkbox" placeholder="City, state, zip code or country" id="location"/>
-                </label>
-            </div>
+            <InputLocation>
+                <label htmlFor="location"> LOCATION</label>
+                <input type="text" placeholder="City, state, zip code or country" id="location"/>
+            </InputLocation>
             <ul>
                 <li>
                     <label htmlFor="London">

@@ -36055,6 +36055,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const Context = _react.default.createContext();
 
 exports.Context = Context;
+const CORS_KEY = "https://cors-anywhere.herokuapp.com/";
+const API_URL = "https://jobs.github.com/positions.json";
 
 function ContextProvider({
   children
@@ -36085,12 +36087,12 @@ function ContextProvider({
 
     return state;
   }, {
-    data: [],
-    loading: true
+    loading: true,
+    data: []
   });
 
   function fetchingJobsData() {
-    _axios.default.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node').then(res => {
+    _axios.default.get(CORS_KEY + API_URL).then(res => {
       dispatch({
         type: 'FETCHING_DATA',
         playload: res.data
@@ -38162,8 +38164,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const FormHeader = _styledComponents.default.header`
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 `;
 const FormFiltering = _styledComponents.default.form`
     margin-right: 15%;
@@ -38221,7 +38223,9 @@ function Header() {
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./context":"component/context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"component/Details.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./context":"component/context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"img/arrow_back.svg":[function(require,module,exports) {
+module.exports = "/arrow_back.81d852c4.svg";
+},{}],"component/Details.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38235,9 +38239,52 @@ var _context = require("./context");
 
 var _reactRouterDom = require("react-router-dom");
 
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _arrow_back = _interopRequireDefault(require("../img/arrow_back.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const LinkToGoBack = _styledComponents.default.div`
+    /* font-family: Poppins; */
+    a {
+        div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding-left: 12px;
+            padding-bottom: 36px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+            color: #1E86FF;
+        }
+    }
+    h3 {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 21px;
+        text-transform: uppercase;
+        color: #B9BDCF;
+        padding-left: 12px;
+        padding-bottom: 16px;
+    }
+    div {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 21px;
+        color: #334680;
+        padding-left: 12px;
+        padding-bottom: 36px;
+        a {
+            color: #1E86FF;
+        }
+    }
+`;
 
 function Details() {
   const {
@@ -38250,9 +38297,12 @@ function Details() {
     data
   } = state;
   const specificItem = data.filter(item => item.id === detail);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(LinkToGoBack, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
-  }, /*#__PURE__*/_react.default.createElement("h2", null, "Go back to search")), /*#__PURE__*/_react.default.createElement("h3", null, "How to Apply"), /*#__PURE__*/_react.default.createElement("div", null, "Please email a copy of your resume and online portfolio to ", /*#__PURE__*/_react.default.createElement("a", {
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _arrow_back.default,
+    alt: "arrow_back"
+  }), " Go back to search")), /*#__PURE__*/_react.default.createElement("h3", null, "How to Apply"), /*#__PURE__*/_react.default.createElement("div", null, "Please email a copy of your resume and online portfolio to ", /*#__PURE__*/_react.default.createElement("a", {
     href: "https://kasisto.com/"
   }, "kasisto.com"), " & CC ", /*#__PURE__*/_react.default.createElement("a", {
     href: "https://kasisto.com/"
@@ -38261,7 +38311,7 @@ function Details() {
 
 var _default = Details;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./context":"component/context.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"component/FilteringLists.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./context":"component/context.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../img/arrow_back.svg":"img/arrow_back.svg"}],"component/FilteringLists.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38282,8 +38332,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const FilteringForm = _styledComponents.default.div`
-    padding: 10px;
-    margin-bottom: 26px;
+    padding-left: 12px;
+    padding-bottom: 25px;
+`;
+const InputLocation = _styledComponents.default.div`
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding-top: 20px;
 `;
 
 function FilteringLists() {
@@ -38297,15 +38353,15 @@ function FilteringLists() {
   return /*#__PURE__*/_react.default.createElement(FilteringForm, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "input"
   }, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    id: "input"
-  }), " Full time")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
-    htmlFor: "location"
-  }, " LOCATION", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
+    id: "input"
+  }), " Full time")), /*#__PURE__*/_react.default.createElement(InputLocation, null, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "location"
+  }, " LOCATION"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
     placeholder: "City, state, zip code or country",
     id: "location"
-  }))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
+  })), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "London"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
@@ -38352,35 +38408,36 @@ const DisplayListsStyled = _styledComponents.default.div`
     box-shadow: 0px 0px 4px black;
     border-radius: 10px; 
     margin-bottom: 16px;
+    width: 100%;
     div {
         img {
             max-width: 80px;
             border-radius: 8px;
         }
     }
-    /* ul {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        li {
-
-        }
-    } */
+`;
+const DisplayListsContainerStyled = _styledComponents.default.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
 `;
 
 function ShowingLists({
   data
 }) {
-  console.log(data);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, data.map(item => {
+  return /*#__PURE__*/_react.default.createElement(DisplayListsContainerStyled, null, data.map(item => {
     return /*#__PURE__*/_react.default.createElement(DisplayListsStyled, {
       key: item.id
     }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/${item.id}`
     }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       src: item.company_logo
-    }), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null), /*#__PURE__*/_react.default.createElement("li", null, item.title), /*#__PURE__*/_react.default.createElement("li", null, item.type))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, item.location), /*#__PURE__*/_react.default.createElement("li", null, item.created_at))));
+    }), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null), /*#__PURE__*/_react.default.createElement("li", null, item.title), /*#__PURE__*/_react.default.createElement("button", {
+      className: "fulltime_button"
+    }, item.type))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, item.location), /*#__PURE__*/_react.default.createElement("li", null, item.created_at))));
   }));
 }
 
@@ -38503,7 +38560,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64475" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50842" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

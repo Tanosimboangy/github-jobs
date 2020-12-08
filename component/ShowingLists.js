@@ -8,28 +8,27 @@ const DisplayListsStyled = styled.div`
     box-shadow: 0px 0px 4px black;
     border-radius: 10px; 
     margin-bottom: 16px;
+    width: 100%;
     div {
         img {
             max-width: 80px;
             border-radius: 8px;
         }
     }
-    /* ul {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        li {
-
-        }
-    } */
+`
+const DisplayListsContainerStyled = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
 `
 
 function ShowingLists({data}) {
-    console.log(data);
 
     return (
-        <>
+        <DisplayListsContainerStyled>
          {data.map(item => {
             return (
                 <DisplayListsStyled key={item.id}>
@@ -39,7 +38,7 @@ function ShowingLists({data}) {
                             <ul>
                                 <li></li>
                                 <li>{item.title}</li>
-                                <li>{item.type}</li>
+                                <button className="fulltime_button">{item.type}</button>
                             </ul>
                         </div>
                         <ul>
@@ -50,7 +49,7 @@ function ShowingLists({data}) {
                 </DisplayListsStyled>
             )
         })}
-        </>
+        </DisplayListsContainerStyled>
     )
 }
 
