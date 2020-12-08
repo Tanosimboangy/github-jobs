@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Context } from './context';
 
@@ -14,25 +14,46 @@ const InputLocation = styled.div`
 `
 
 function FilteringLists() {
+    const [locationState, setLocationState] = useState("");
     const { state, dispatch} = useContext(Context);
     const { data } = state;
     console.log(data);
 
     function filteringFullTimeJobs() {
-        const fullTimeJobs = data.filter(item => item.type == "Full Time")
+        const fullTimeJobs = data.filter(item => item.type === "Full Time")
         dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
+    }
+
+    // const input = inputSearchName.value;
+    // const inputSearch = input.toLowerCase();
+    // const filterPersName = persons.filter(person => person.lastName.toLowerCase().includes(inputSearch) || person.firstName.toLowerCase().includes(inputSearch));
+
+    function locationFiltering(e) {
+        setLocationState(e.target.value);
+        const newLocationState = locationState.toLowerCase();
+        const newLocatedJob = data.filter(item => item.title.toLowerCase === newLocationState)
+        dispatch({type: 'FILTERING_LOCATION_JOBS', locationfiltered: newLocatedJob})
     }
 
     return (
         <FilteringForm>
             <div>
                 <label htmlFor="input">
-                <input type="checkbox" onChange={filteringFullTimeJobs} id="input"/> Full time
+                <input 
+                    type="checkbox" 
+                    onChange={filteringFullTimeJobs} 
+                    id="input"/> Full time
                 </label>
             </div>
             <InputLocation>
                 <label htmlFor="location"> LOCATION</label>
-                <input type="text" placeholder="City, state, zip code or country" id="location"/>
+                <input 
+                    type="text" 
+                    id="location"
+                    placeholder="City, state, zip code or country" 
+                    value={locationState} 
+                    onChange={locationFiltering}
+                />
             </InputLocation>
             <ul>
                 <li>

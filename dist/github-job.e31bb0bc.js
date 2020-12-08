@@ -36075,7 +36075,7 @@ function ContextProvider({
       case 'FILTERING_FULL_TIME_JOBS':
         {
           return { ...state,
-            data: [...state.data, action.fultimefiltered]
+            data: action.fultimefiltered
           };
         }
 
@@ -38379,6 +38379,7 @@ const InputLocation = _styledComponents.default.div`
 `;
 
 function FilteringLists() {
+  const [locationState, setLocationState] = (0, _react.useState)("");
   const {
     state,
     dispatch
@@ -38389,10 +38390,23 @@ function FilteringLists() {
   console.log(data);
 
   function filteringFullTimeJobs() {
-    const fullTimeJobs = data.filter(item => item.type == "Full Time");
+    const fullTimeJobs = data.filter(item => item.type === "Full Time");
     dispatch({
       type: 'FILTERING_FULL_TIME_JOBS',
       fultimefiltered: fullTimeJobs
+    });
+  } // const input = inputSearchName.value;
+  // const inputSearch = input.toLowerCase();
+  // const filterPersName = persons.filter(person => person.lastName.toLowerCase().includes(inputSearch) || person.firstName.toLowerCase().includes(inputSearch));
+
+
+  function locationFiltering(e) {
+    setLocationState(e.target.value);
+    const newLocationState = locationState.toLowerCase();
+    const newLocatedJob = data.filter(item => item.title.toLowerCase === newLocationState);
+    dispatch({
+      type: 'FILTERING_LOCATION_JOBS',
+      locationfiltered: newLocatedJob
     });
   }
 
@@ -38406,8 +38420,10 @@ function FilteringLists() {
     htmlFor: "location"
   }, " LOCATION"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
+    id: "location",
     placeholder: "City, state, zip code or country",
-    id: "location"
+    value: locationState,
+    onChange: locationFiltering
   })), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "London"
   }, /*#__PURE__*/_react.default.createElement("input", {

@@ -19,7 +19,7 @@ function ContextProvider({children}) {
             case 'FILTERING_FULL_TIME_JOBS': {
                 return {
                     ...state,
-                    data: [...state.data, action.fultimefiltered]
+                    data:  action.fultimefiltered,
                 }
             }
             default: {
