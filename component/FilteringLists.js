@@ -16,12 +16,18 @@ const InputLocation = styled.div`
 function FilteringLists() {
     const { state, dispatch} = useContext(Context);
     const { data } = state;
+    console.log(data);
+
+    function filteringFullTimeJobs() {
+        const fullTimeJobs = data.filter(item => item.type == "Full Time")
+        dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: [...fultimefiltered, fullTimeJobs]})
+    }
 
     return (
         <FilteringForm>
             <div>
                 <label htmlFor="input">
-                <input type="checkbox" id="input"/> Full time
+                <input type="checkbox" onChange={filteringFullTimeJobs} id="input"/> Full time
                 </label>
             </div>
             <InputLocation>

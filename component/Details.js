@@ -35,6 +35,7 @@ const LinkToGoBack = styled.div`
         color: #334680;
         padding-left: 12px;
         padding-bottom: 36px;
+        max-width: 240px;
         a {
             color: #1E86FF;
         }
@@ -45,10 +46,10 @@ function Details() {
     const { detail } = useParams();
     const { state } = useContext(Context);
     const { data } = state;
-    const specificItem = data.filter(item => item.id === detail);
+    const detailItem = data.filter(item => item.id === detail);
 
     return (
-        <div>
+        <div className="details_container">
             <LinkToGoBack>
                 <Link to="/">
                     <div><img src={arrow_back} alt="arrow_back"/> Go back to search</div>
@@ -56,28 +57,31 @@ function Details() {
                 <h3>How to Apply</h3>
                 <div>Please email a copy of your resume and online portfolio to <a href="https://kasisto.com/">kasisto.com</a> & CC <a href="https://kasisto.com/">eric@kasisto.com</a></div>
             </LinkToGoBack>
-            <div>
-                <div>
-                    <h2>{specificItem.title}</h2>
-                    <button>{specificItem.type}</button>
-                    <p>{specificItem.created_at}</p>
-                </div>
-                <div>
-                    <ul>
-                        <li>
-                            {specificItem.company_logo}
-                        </li>
-                        <li>
-                            <h4>{specificItem.location}</h4>
-                            {/* <h4>{specificItem.}</h4> */}
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <p>{specificItem.description}</p>
-                </div>
-            </div>
-
+            { 
+            detailItem.map(item => {
+                return (
+                    <div>
+                        <div>
+                            <h2>{item.title}</h2>
+                            <button>{item.type}</button>
+                            <p>{new Date(item.created_at).toLocaleDateString()}</p>
+                        </div>
+                        <div className="descriptions">
+                            <ul>
+                                <li>
+                                    {item.company_logo}
+                                </li>
+                                <li>
+                                    <h4>{item.location}</h4>
+                                    {/* <h4>{item.}</h4> */}
+                                </li>
+                            </ul>
+                        </div>
+                        <div>{item.description}</div>
+                    </div>
+                )
+            })
+            }
         </div>
     )
 }

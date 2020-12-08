@@ -44,8 +44,9 @@ function Header() {
     return (
         <FormHeader className="header">
             <FormFiltering onSubmit={CheckFullTimeJob}>
-                <input 
+                <input
                     type="text" 
+                    placeholder="Title, companies, expertise or benefits"
                     value={inputValue} 
                     onChange={e => setInputValue(e.target.value)}
                     required 

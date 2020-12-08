@@ -12,13 +12,14 @@ function ContextProvider({children}) {
                 return {
                     ...state,
                     loading: false,
-                    data: action.playload
+                    data: action.playload,
+                    loading: true,
                 }
             }
             case 'FILTERING_FULL_TIME_JOBS': {
                 return {
                     ...state,
-                    data: [...data, action.fultimefiltered]
+                    data: [...state.data, action.fultimefiltered]
                 }
             }
             default: {
@@ -28,8 +29,9 @@ function ContextProvider({children}) {
         }
         return state;
     }, {
-      loading: true,
       data: [ ],
+      loading: true,
+      loading: false,
     })
 
     function fetchingJobsData() {
@@ -40,7 +42,7 @@ function ContextProvider({children}) {
           })
       }
       useEffect(() => {
-            fetchingJobsData()
+        fetchingJobsData()
       }, [])
 
     return(

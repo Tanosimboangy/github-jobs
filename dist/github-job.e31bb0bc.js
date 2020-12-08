@@ -36067,14 +36067,15 @@ function ContextProvider({
         {
           return { ...state,
             loading: false,
-            data: action.playload
+            data: action.playload,
+            loading: true
           };
         }
 
       case 'FILTERING_FULL_TIME_JOBS':
         {
           return { ...state,
-            data: [...data, action.fultimefiltered]
+            data: [...state.data, action.fultimefiltered]
           };
         }
 
@@ -36087,8 +36088,9 @@ function ContextProvider({
 
     return state;
   }, {
+    data: [],
     loading: true,
-    data: []
+    loading: false
   });
 
   function fetchingJobsData() {
@@ -38213,6 +38215,7 @@ function Header() {
     onSubmit: CheckFullTimeJob
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
+    placeholder: "Title, companies, expertise or benefits",
     value: inputValue,
     onChange: e => setInputValue(e.target.value),
     required: true
@@ -38280,6 +38283,7 @@ const LinkToGoBack = _styledComponents.default.div`
         color: #334680;
         padding-left: 12px;
         padding-bottom: 36px;
+        max-width: 240px;
         a {
             color: #1E86FF;
         }
@@ -38296,8 +38300,10 @@ function Details() {
   const {
     data
   } = state;
-  const specificItem = data.filter(item => item.id === detail);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(LinkToGoBack, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  const detailItem = data.filter(item => item.id === detail);
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "details_container"
+  }, /*#__PURE__*/_react.default.createElement(LinkToGoBack, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
     src: _arrow_back.default,
@@ -38306,7 +38312,11 @@ function Details() {
     href: "https://kasisto.com/"
   }, "kasisto.com"), " & CC ", /*#__PURE__*/_react.default.createElement("a", {
     href: "https://kasisto.com/"
-  }, "eric@kasisto.com"))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, specificItem.title), /*#__PURE__*/_react.default.createElement("button", null, specificItem.type), /*#__PURE__*/_react.default.createElement("p", null, specificItem.created_at)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, specificItem.company_logo), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h4", null, specificItem.location)))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, specificItem.description))));
+  }, "eric@kasisto.com"))), detailItem.map(item => {
+    return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, item.title), /*#__PURE__*/_react.default.createElement("button", null, item.type), /*#__PURE__*/_react.default.createElement("p", null, new Date(item.created_at).toLocaleDateString())), /*#__PURE__*/_react.default.createElement("div", {
+      className: "descriptions"
+    }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, item.company_logo), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h4", null, item.location)))), /*#__PURE__*/_react.default.createElement("div", null, item.description));
+  }));
 }
 
 var _default = Details;
@@ -38350,10 +38360,21 @@ function FilteringLists() {
   const {
     data
   } = state;
+  console.log(data);
+
+  function filteringFullTimeJobs() {
+    const fullTimeJobs = data.filter(item => item.type == "Full Time");
+    dispatch({
+      type: 'FILTERING_FULL_TIME_JOBS',
+      fultimefiltered: [...fultimefiltered, fullTimeJobs]
+    });
+  }
+
   return /*#__PURE__*/_react.default.createElement(FilteringForm, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "input"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
+    onChange: filteringFullTimeJobs,
     id: "input"
   }), " Full time")), /*#__PURE__*/_react.default.createElement(InputLocation, null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "location"
