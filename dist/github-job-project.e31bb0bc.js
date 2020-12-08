@@ -36072,7 +36072,7 @@ function ContextProvider({
           };
         }
 
-      case 'FILTERING_LOCATION_JOBS':
+      case 'FILTERING_JOB':
         {
           return { ...state,
             data: action.locationfiltered
@@ -36083,6 +36083,13 @@ function ContextProvider({
         {
           return { ...state,
             data: action.filteredJobs
+          };
+        }
+
+      case 'FILTERING_FULL_TIME_JOBS':
+        {
+          return { ...state,
+            data: action.locationfiltered
           };
         }
 
@@ -38160,16 +38167,16 @@ function Header() {
   const {
     data
   } = state;
-  const [inputValue, setInputValue] = (0, _react.useState)('');
+  const [searchInput, setSearchInput] = (0, _react.useState)('');
 
   function FilteringJobs(e) {
     e.preventDefault();
-    const jobs = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));
+    const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(searchInput) || item.company.toLowerCase().includes(searchInput) || item.location.toLowerCase().includes(searchInput));
     dispatch({
-      type: 'FILTERING_JOBS',
-      filteredJobs: newLocatedJob
+      type: 'FILTERING_JOB',
+      locationfiltered: collectionOfJobs
     });
-    setInputValue("");
+    setSearchInput("");
   }
 
   return /*#__PURE__*/_react.default.createElement(FormHeader, {
@@ -38182,8 +38189,8 @@ function Header() {
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "Title, companies, expertise or benefits",
-    value: inputValue,
-    onChange: e => setInputValue(e.target.value),
+    value: searchInput,
+    onChange: e => setSearchInput(e.target.value),
     required: true
   }), /*#__PURE__*/_react.default.createElement("button", {
     className: "header_submit",
@@ -38357,10 +38364,17 @@ function FilteringLists() {
   const {
     data
   } = state;
-  console.log(data); // function filteringFullTimeJobs() {
-  //     const fullTimeJobs = data.filter(item => item.type === "Full Time")
-  //     dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
-  // }
+  console.log(data); // Filtering the jobs according to the the type of them
+
+  function filteringFullTimeJobs() {
+    const fullTimeJobs = data.filter(item => item.type === "Full Time");
+    console.log(fullTimeJobs);
+    dispatch({
+      type: 'FILTERING_FULL_TIME_JOBS',
+      fultimefiltered: fullTimeJobs
+    });
+  } // Filtering the jobs by the written value form the user
+
 
   function locationFiltering(e) {
     setLocationState(e.target.value);
@@ -38370,7 +38384,8 @@ function FilteringLists() {
       type: 'FILTERING_LOCATION_JOBS',
       locationfiltered: newLocatedJob
     });
-  }
+  } // Filtering the jobs by the value of one of the four buttons
+
 
   function filteringJobs(e) {
     const el = e.target.value;
@@ -38386,8 +38401,8 @@ function FilteringLists() {
   return /*#__PURE__*/_react.default.createElement(FilteringForm, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "input"
   }, /*#__PURE__*/_react.default.createElement("input", {
-    type: "checkbox" // onChange={filteringFullTimeJobs} 
-    ,
+    type: "checkbox",
+    onChange: filteringFullTimeJobs,
     id: "input"
   }), " Full time")), /*#__PURE__*/_react.default.createElement(InputLocation, null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "location"

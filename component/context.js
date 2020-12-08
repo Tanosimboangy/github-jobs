@@ -16,7 +16,7 @@ function ContextProvider({children}) {
                     loading: true,
                 }
             }
-            case 'FILTERING_LOCATION_JOBS': {
+            case 'FILTERING_JOB': {
                 return {
                     ...state,
                     data:  action.locationfiltered,
@@ -26,6 +26,12 @@ function ContextProvider({children}) {
                 return {
                     ...state,
                     data:  action.filteredJobs,
+                }
+            }
+            case 'FILTERING_FULL_TIME_JOBS': {
+                return {
+                    ...state,
+                    data:  action.locationfiltered,
                 }
             }
             case 'FETCH_FAILED' : return {

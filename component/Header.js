@@ -35,13 +35,13 @@ const FormFiltering = styled.form`
 function Header() {
     const { state, dispatch} = useContext(Context);
     const { data } = state;
-    const [inputValue, setInputValue] = useState('');
+    const [searchInput, setSearchInput] = useState('');
 
     function FilteringJobs(e) {
         e.preventDefault();
-        const jobs = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));  
-        dispatch({type:'FILTERING_JOBS', filteredJobs: newLocatedJob})
-        setInputValue("");
+        const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(searchInput) || item.company.toLowerCase().includes(searchInput) || item.location.toLowerCase().includes(searchInput));  
+        dispatch({type:'FILTERING_JOB', locationfiltered: collectionOfJobs})
+        setSearchInput("");
     }
 
     return (
@@ -51,8 +51,8 @@ function Header() {
                 <input
                     type="text" 
                     placeholder="Title, companies, expertise or benefits"
-                    value={inputValue} 
-                    onChange={e => setInputValue(e.target.value)}
+                    value={searchInput} 
+                    onChange={e => setSearchInput(e.target.value)}
                     required 
                 />
                 <button className="header_submit" type="submit">Search</button>

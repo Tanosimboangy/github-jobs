@@ -33,11 +33,14 @@ function FilteringLists() {
     const { data } = state;
     console.log(data);
 
-    // function filteringFullTimeJobs() {
-    //     const fullTimeJobs = data.filter(item => item.type === "Full Time")
-    //     dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
-    // }
+    // Filtering the jobs according to the the type of them
+    function filteringFullTimeJobs() {
+        const fullTimeJobs = data.filter(item => item.type === "Full Time")
+        console.log(fullTimeJobs);
+        dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
+    }
     
+    // Filtering the jobs by the written value form the user
     function locationFiltering(e) {
         setLocationState(e.target.value);
         const newLocationState = locationState.toLowerCase();
@@ -45,6 +48,8 @@ function FilteringLists() {
         dispatch({type: 'FILTERING_LOCATION_JOBS', locationfiltered: newLocatedJob})
     }
 
+
+    // Filtering the jobs by the value of one of the four buttons
     function filteringJobs(e) {
         const el = e.target.value
         console.log(el);
@@ -59,7 +64,7 @@ function FilteringLists() {
                 <label htmlFor="input">
                 <input 
                     type="checkbox" 
-                    // onChange={filteringFullTimeJobs} 
+                    onChange={filteringFullTimeJobs} 
                     id="input"/> Full time
                 </label>
             </div>
