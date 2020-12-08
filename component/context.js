@@ -16,11 +16,21 @@ function ContextProvider({children}) {
                     loading: true,
                 }
             }
-            case 'FILTERING_FULL_TIME_JOBS': {
+            case 'GETTING_FULL_TIME_JOBS': {
                 return {
                     ...state,
-                    data:  action.fultimefiltered,
+                    data:  action.gettingFullTimeJobs,
                 }
+            }
+            case 'FILTERING_LOCATION_JOBS': {
+                return {
+                    ...state,
+                    data:  action.locationfiltered,
+                }
+            }
+            case 'FETCH_FAILED' : return {
+              ...state, 
+              error : "You can try again your fetch!",
             }
             default: {
                 console.error('No actions defined', action.type);
@@ -32,6 +42,7 @@ function ContextProvider({children}) {
       data: [ ],
       loading: true,
       loading: false,
+      description: '',
     })
 
     function fetchingJobsData() {
@@ -40,96 +51,37 @@ function ContextProvider({children}) {
           .then(res => {
             dispatch({ type: 'FETCHING_DATA', playload : res.data })
           })
+          .catch(error => {
+            dispatch({type : "FETCH_FAILED" })
+          })
       }
+
       useEffect(() => {
         fetchingJobsData()
       }, [])
 
+      const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
+      const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`
+
+      function fetchingfulltimeJobs() {
+        axios
+          .get(CORS_KEY + API_URLS)
+          .then(res => {
+            dispatch({ type: 'GETTING_FULL_TIME_JOBS', gettingFullTimeJobs : res.data })
+          })
+          .catch(error => {
+            dispatch({type : "FETCH_FAILED" })
+          })
+      }
+
+      useEffect(() => {
+        fetchingfulltimeJobs();
+      }, [])
+
     return(
-        <Context.Provider value={{state, dispatch}}>
+        <Context.Provider value={{state, dispatch, fetchingfulltimeJobs}}>
             {children}
         </Context.Provider>
     )
 }
-
 export  { Context, ContextProvider }
-
-
-/*
-import React, { createContext, useEffect, useReducer } from 'react'
-import axios from 'axios'
-
-const GlobalContext = createContext()
-const initialState = {
-  description: "python",
-  location: "new york",
-  lat: "",
-  long: "",
-  full_time: true,
-  jobs: [],
-  loading: true,
-  error : ""
-}
-
-export const ACTIONS = {
-  LOADING_STATE: "loading state",
-  SEARCH_JOB_BY_KEY_WORDS : "search_job_by_key_words"
-}
-
-const API_URL = "https://jobs.github.com/"
-const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
-
-function reducer(state, action) {
-  switch (action.type) {
-    case ACTIONS.LOADING_STATE : {
-      return {
-        ...state,
-        jobs: action.payload,
-        loading : false
-      }
-    }
-    case ACTIONS.SEARCH_JOB_BY_KEY_WORDS : {
-      return {
-        ...state,
-        description : action.foundJobsByKeyWords
-      }
-    }
-    default: {
-      return state
-    }
-  }
-}
-
-
-function JobsContextProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  function getJobsData() {
-    axios
-      .get(CORS_KEY + API_URL + `positions.json?description=${state.description}&location=${state.location}`)
-      .then(response => {
-        dispatch({ type: ACTIONS.LOADING_STATE, payload : response.data })
-      })
-      .catch(error => {
-        dispatch({type : "FETCH_ERROR" })
-      })
-  }
-
-  useEffect(() => {
-    getJobsData()
-  }, [])
-
-  useEffect(() => {
-    getJobsData()
-  }, [state.description])
-
-  console.log(state);
-  return (
-    <GlobalContext.Provider value={{state, dispatch }}>
-      { children }
-    </GlobalContext.Provider>
-  )
-}
-
-export { JobsContextProvider, GlobalContext }
-*/

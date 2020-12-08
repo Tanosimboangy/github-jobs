@@ -36072,10 +36072,10 @@ function ContextProvider({
           };
         }
 
-      case 'FILTERING_FULL_TIME_JOBS':
+      case 'GETTING_FULL_TIME_JOBS':
         {
           return { ...state,
-            data: action.fultimefiltered
+            data: action.gettingFullTimeJobs
           };
         }
 
@@ -36085,6 +36085,11 @@ function ContextProvider({
             data: action.locationfiltered
           };
         }
+
+      case 'FETCH_FAILED':
+        return { ...state,
+          error: "You can try again your fetch!"
+        };
 
       default:
         {
@@ -36097,7 +36102,8 @@ function ContextProvider({
   }, {
     data: [],
     loading: true,
-    loading: false
+    loading: false,
+    description: ''
   });
 
   function fetchingJobsData() {
@@ -36106,97 +36112,43 @@ function ContextProvider({
         type: 'FETCHING_DATA',
         playload: res.data
       });
+    }).catch(error => {
+      dispatch({
+        type: "FETCH_FAILED"
+      });
     });
   }
 
   (0, _react.useEffect)(() => {
     fetchingJobsData();
   }, []);
+  const CORS_KEY = "https://cors-anywhere.herokuapp.com/";
+  const API_URLS = `https://jobs.github.com/positions.json?description=${state.description}full_time${state.full_time}location${state.location}`;
+
+  function fetchingfulltimeJobs() {
+    _axios.default.get(CORS_KEY + API_URLS).then(res => {
+      dispatch({
+        type: 'GETTING_FULL_TIME_JOBS',
+        gettingFullTimeJobs: res.data
+      });
+    }).catch(error => {
+      dispatch({
+        type: "FETCH_FAILED"
+      });
+    });
+  }
+
+  (0, _react.useEffect)(() => {
+    fetchingfulltimeJobs();
+  }, []);
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
       state,
-      dispatch
+      dispatch,
+      fetchingfulltimeJobs
     }
   }, children);
 }
-/*
-import React, { createContext, useEffect, useReducer } from 'react'
-import axios from 'axios'
-
-const GlobalContext = createContext()
-const initialState = {
-  description: "python",
-  location: "new york",
-  lat: "",
-  long: "",
-  full_time: true,
-  jobs: [],
-  loading: true,
-  error : ""
-}
-
-export const ACTIONS = {
-  LOADING_STATE: "loading state",
-  SEARCH_JOB_BY_KEY_WORDS : "search_job_by_key_words"
-}
-
-const API_URL = "https://jobs.github.com/"
-const  CORS_KEY = "https://cors-anywhere.herokuapp.com/"
-
-function reducer(state, action) {
-  switch (action.type) {
-    case ACTIONS.LOADING_STATE : {
-      return {
-        ...state,
-        jobs: action.payload,
-        loading : false
-      }
-    }
-    case ACTIONS.SEARCH_JOB_BY_KEY_WORDS : {
-      return {
-        ...state,
-        description : action.foundJobsByKeyWords
-      }
-    }
-    default: {
-      return state
-    }
-  }
-}
-
-
-function JobsContextProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  function getJobsData() {
-    axios
-      .get(CORS_KEY + API_URL + `positions.json?description=${state.description}&location=${state.location}`)
-      .then(response => {
-        dispatch({ type: ACTIONS.LOADING_STATE, payload : response.data })
-      })
-      .catch(error => {
-        dispatch({type : "FETCH_ERROR" })
-      })
-  }
-
-  useEffect(() => {
-    getJobsData()
-  }, [])
-
-  useEffect(() => {
-    getJobsData()
-  }, [state.description])
-
-  console.log(state);
-  return (
-    <GlobalContext.Provider value={{state, dispatch }}>
-      { children }
-    </GlobalContext.Provider>
-  )
-}
-
-export { JobsContextProvider, GlobalContext }
-*/
 },{"react":"node_modules/react/index.js","axios":"node_modules/axios/index.js"}],"node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
 /** @license React v17.0.1
  * react-is.development.js
@@ -38402,17 +38354,17 @@ function FilteringLists() {
       type: 'FILTERING_FULL_TIME_JOBS',
       fultimefiltered: fullTimeJobs
     });
-  } //     company: "MapLarge, Inc."
-  // company_logo: "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbW1TIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3cad37dc980a8d5ba649d5004dde3ba226c47e0/maplargelogo23.png"
-  // company_url: "http://MapLarge.com"
-  // created_at: "Mon Dec 07 23:18:19 UTC 2020"
-  // description: 
-  // how_to_apply: "<p>Email your resume to <a href="mailto:jobs@maplarge.com">jobs@maplarge.com</a></p>↵"
-  // id: "6ad65ab4-197e-4d05-b709-7674d448b031"
-  // location: "United States"
-  // title: "Senior Software Architect / Engineer who enjoys coding web services in c#"
-  // type: "Full Time"
-  // url: "https://jobs.gi
+  } //  company: "MapLarge, Inc."
+  //  company_logo: 
+  //  company_url: "http://MapLarge.com"
+  //  created_at: "Mon Dec 07 23:18:19 UTC 2020"
+  //  description: 
+  //  how_to_apply: "<p>Email your resume to <a href="mailto:jobs@maplarge.com">jobs@maplarge.com</a></p>↵"
+  //  id: "6ad65ab4-197e-4d05-b709-7674d448b031"
+  //  location: "United States"
+  //  title: "Senior Software Architect / Engineer who enjoys coding web services in c#"
+  //  type: "Full Time"
+  //  url: "https://jobs.gi
 
 
   function locationFiltering(e) {
@@ -38668,7 +38620,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50842" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51230" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -38845,4 +38797,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/github-job.e31bb0bc.js.map
+//# sourceMappingURL=/github-job-project.e31bb0bc.js.map

@@ -24,14 +24,22 @@ function FilteringLists() {
         dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
     }
 
-    // const input = inputSearchName.value;
-    // const inputSearch = input.toLowerCase();
-    // const filterPersName = persons.filter(person => person.lastName.toLowerCase().includes(inputSearch) || person.firstName.toLowerCase().includes(inputSearch));
+//  company: "MapLarge, Inc."
+//  company_logo: 
+//  company_url: "http://MapLarge.com"
+//  created_at: "Mon Dec 07 23:18:19 UTC 2020"
+//  description: 
+//  how_to_apply: "<p>Email your resume to <a href="mailto:jobs@maplarge.com">jobs@maplarge.com</a></p>↵"
+//  id: "6ad65ab4-197e-4d05-b709-7674d448b031"
+//  location: "United States"
+//  title: "Senior Software Architect / Engineer who enjoys coding web services in c#"
+//  type: "Full Time"
+//  url: "https://jobs.gi
 
     function locationFiltering(e) {
         setLocationState(e.target.value);
         const newLocationState = locationState.toLowerCase();
-        const newLocatedJob = data.filter(item => item.title.toLowerCase === newLocationState)
+        const newLocatedJob = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));  
         dispatch({type: 'FILTERING_LOCATION_JOBS', locationfiltered: newLocatedJob})
     }
 

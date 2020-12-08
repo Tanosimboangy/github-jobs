@@ -1,0 +1,108 @@
+body {
+  background: #6262ff10;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-style: normal;
+}
+body h1, body h2, body h3, body h4, body h5, body h6, body p {
+  margin: 0;
+}
+body ul {
+  padding: 0;
+  margin: 0;
+}
+body ul li {
+  list-style: none;
+}
+body a {
+  text-decoration: none;
+}
+body h1 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  color: #282538;
+  padding-bottom: 32px;
+  padding-left: 12px;
+  padding-top: 32px;
+}
+body .header_submit {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 16px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: #dc0000;
+  background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+body .fulltime_button {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 16px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: #ff4000;
+  background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+body .header {
+  background-image: url(/backgroundImg.f44d7848.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  max-width: 95%;
+  margin: auto;
+  margin-bottom: 29px;
+}
+body .main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+body .details_container {
+  display: flex;
+  flex-direction: column;
+}
+body .details_container .descriptions .description_header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+body .details_container .descriptions .description_header ul li:first-of-type {
+  padding-right: 32px;
+}
+
+@media (min-width: 720px) {
+  body .main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  body .details_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  body .details_container .descriptions {
+    max-width: 90%;
+    margin: auto;
+  }
+}
+
+/*# sourceMappingURL=/github-job-project.80ee2152.css.map */
