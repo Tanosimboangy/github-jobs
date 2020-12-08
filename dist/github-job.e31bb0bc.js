@@ -38145,7 +38145,9 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"component/Header.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"img/globe.svg":[function(require,module,exports) {
+module.exports = "/globe.66ee0b64.svg";
+},{}],"component/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38159,6 +38161,8 @@ var _context = require("./context");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _globe = _interopRequireDefault(require("../img/globe.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -38166,8 +38170,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const FormHeader = _styledComponents.default.header`
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 `;
 const FormFiltering = _styledComponents.default.form`
     margin-right: 15%;
@@ -38180,6 +38184,9 @@ const FormFiltering = _styledComponents.default.form`
     background-color: white;
     border-radius: 12px;
     padding: 2px;
+    img {
+        padding-left: 2%;
+    }
     input {
         width: 100%;
         background: none;
@@ -38213,21 +38220,27 @@ function Header() {
     className: "header"
   }, /*#__PURE__*/_react.default.createElement(FormFiltering, {
     onSubmit: CheckFullTimeJob
-  }, /*#__PURE__*/_react.default.createElement("input", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _globe.default,
+    alt: "this is a globe"
+  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "Title, companies, expertise or benefits",
     value: inputValue,
     onChange: e => setInputValue(e.target.value),
     required: true
   }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "header_submit",
     type: "submit"
   }, "Search")));
 }
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./context":"component/context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"img/arrow_back.svg":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./context":"component/context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../img/globe.svg":"img/globe.svg"}],"img/arrow_back.svg":[function(require,module,exports) {
 module.exports = "/arrow_back.81d852c4.svg";
+},{}],"img/time.svg":[function(require,module,exports) {
+module.exports = "/time.11274d4e.svg";
 },{}],"component/Details.js":[function(require,module,exports) {
 "use strict";
 
@@ -38245,6 +38258,8 @@ var _reactRouterDom = require("react-router-dom");
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _arrow_back = _interopRequireDefault(require("../img/arrow_back.svg"));
+
+var _time = _interopRequireDefault(require("../img/time.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38288,7 +38303,11 @@ const LinkToGoBack = _styledComponents.default.div`
             color: #1E86FF;
         }
     }
-`;
+`; // const DescriptionHeader = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+// `
 
 function Details() {
   const {
@@ -38313,15 +38332,22 @@ function Details() {
   }, "kasisto.com"), " & CC ", /*#__PURE__*/_react.default.createElement("a", {
     href: "https://kasisto.com/"
   }, "eric@kasisto.com"))), detailItem.map(item => {
-    return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, item.title), /*#__PURE__*/_react.default.createElement("button", null, item.type), /*#__PURE__*/_react.default.createElement("p", null, new Date(item.created_at).toLocaleDateString())), /*#__PURE__*/_react.default.createElement("div", {
-      className: "descriptions"
-    }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, item.company_logo), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h4", null, item.location)))), /*#__PURE__*/_react.default.createElement("div", null, item.description));
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: "descriptions",
+      key: item.id
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "description_header"
+    }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h2", null, item.title)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", null, item.type))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      src: _time.default
+    }), " ", new Date(item.created_at).toLocaleDateString())), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("img", {
+      src: item.company_logo
+    })), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h4", null, item.location)))), /*#__PURE__*/_react.default.createElement("p", null, item.description));
   }));
 }
 
 var _default = Details;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./context":"component/context.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../img/arrow_back.svg":"img/arrow_back.svg"}],"component/FilteringLists.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./context":"component/context.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../img/arrow_back.svg":"img/arrow_back.svg","../img/time.svg":"img/time.svg"}],"component/FilteringLists.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38366,7 +38392,7 @@ function FilteringLists() {
     const fullTimeJobs = data.filter(item => item.type == "Full Time");
     dispatch({
       type: 'FILTERING_FULL_TIME_JOBS',
-      fultimefiltered: [...fultimefiltered, fullTimeJobs]
+      fultimefiltered: fullTimeJobs
     });
   }
 
@@ -38421,10 +38447,14 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _globe = _interopRequireDefault(require("../img/globe.svg"));
+
+var _time = _interopRequireDefault(require("../img/time.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const DisplayListsStyled = _styledComponents.default.div`
-    padding: 10px;
+    padding: 16px;
     background-color: white;
     box-shadow: 0px 0px 4px black;
     border-radius: 10px; 
@@ -38432,7 +38462,7 @@ const DisplayListsStyled = _styledComponents.default.div`
     width: 100%;
     div {
         img {
-            max-width: 80px;
+            max-width: 20%;
             border-radius: 8px;
         }
     }
@@ -38442,8 +38472,8 @@ const DisplayListsContainerStyled = _styledComponents.default.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 4%;
+    margin-right: 4%;
 `;
 
 function ShowingLists({
@@ -38456,15 +38486,41 @@ function ShowingLists({
       to: `/${item.id}`
     }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
       src: item.company_logo
-    }), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null), /*#__PURE__*/_react.default.createElement("li", null, item.title), /*#__PURE__*/_react.default.createElement("button", {
+    }), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, item.title), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("button", {
       className: "fulltime_button"
-    }, item.type))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, item.location), /*#__PURE__*/_react.default.createElement("li", null, item.created_at))));
+    }, item.type)))), /*#__PURE__*/_react.default.createElement("ul", {
+      style: {
+        display: "flex",
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 'auto'
+      }
+    }, /*#__PURE__*/_react.default.createElement("li", {
+      style: {
+        display: "flex",
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingRight: "20px"
+      }
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      src: _globe.default,
+      alt: "this is the location"
+    }), " ", item.location), /*#__PURE__*/_react.default.createElement("li", {
+      style: {
+        display: "flex",
+        flexDirection: 'row',
+        alignItems: 'center'
+      }
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      src: _time.default,
+      alt: "this when it is realesed"
+    }), " ", item.created_at))));
   }));
 }
 
 var _default = ShowingLists;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"component/MainLists.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../img/globe.svg":"img/globe.svg","../img/time.svg":"img/time.svg"}],"component/MainLists.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

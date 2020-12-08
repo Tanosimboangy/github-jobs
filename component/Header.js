@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { Context } from './context';
 import styled from 'styled-components';
+import globe from '../img/globe.svg';
 
 const FormHeader = styled.header`
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 `
 const FormFiltering = styled.form`
     margin-right: 15%;
@@ -17,6 +18,9 @@ const FormFiltering = styled.form`
     background-color: white;
     border-radius: 12px;
     padding: 2px;
+    img {
+        padding-left: 2%;
+    }
     input {
         width: 100%;
         background: none;
@@ -44,6 +48,7 @@ function Header() {
     return (
         <FormHeader className="header">
             <FormFiltering onSubmit={CheckFullTimeJob}>
+                <img src={globe} alt="this is a globe"/>
                 <input
                     type="text" 
                     placeholder="Title, companies, expertise or benefits"
@@ -51,7 +56,7 @@ function Header() {
                     onChange={e => setInputValue(e.target.value)}
                     required 
                 />
-                <button type="submit">Search</button>
+                <button className="header_submit" type="submit">Search</button>
             </FormFiltering>
         </FormHeader>
     )

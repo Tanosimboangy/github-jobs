@@ -3,6 +3,7 @@ import { Context} from './context';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import arrow_back from '../img/arrow_back.svg';
+import time from '../img/time.svg';
 
 const LinkToGoBack = styled.div`
     /* font-family: Poppins; */
@@ -41,6 +42,11 @@ const LinkToGoBack = styled.div`
         }
     }
 `
+// const DescriptionHeader = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+// `
 
 function Details() {
     const { detail } = useParams();
@@ -60,16 +66,22 @@ function Details() {
             { 
             detailItem.map(item => {
                 return (
-                    <div>
-                        <div>
-                            <h2>{item.title}</h2>
-                            <button>{item.type}</button>
-                            <p>{new Date(item.created_at).toLocaleDateString()}</p>
-                        </div>
-                        <div className="descriptions">
+                    <div className="descriptions" key={item.id}>
+                        <div className="description_header">
                             <ul>
                                 <li>
-                                    {item.company_logo}
+                                    <h2>{item.title}</h2>
+                                </li>
+                                <li>
+                                    <button>{item.type}</button>
+                                </li>
+                            </ul>
+                            <div><img src={time}/> {new Date(item.created_at).toLocaleDateString()}</div>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <img src={item.company_logo} />
                                 </li>
                                 <li>
                                     <h4>{item.location}</h4>
@@ -77,7 +89,7 @@ function Details() {
                                 </li>
                             </ul>
                         </div>
-                        <div>{item.description}</div>
+                        <p>{item.description}</p>
                     </div>
                 )
             })

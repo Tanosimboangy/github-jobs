@@ -26,10 +26,10 @@ body {
         padding-left: 12px;
         padding-top: 32px;
     }
-    button {
+    .header_submit {
         border: 0;
         line-height: 2.5;
-        padding: 0 20px;
+        padding: 0 16px;
         font-size: 1rem;
         text-align: center;
         cursor: pointer;
@@ -48,7 +48,7 @@ body {
     .fulltime_button {
         border: 0;
         line-height: 2.5;
-        padding: 0 20px;
+        padding: 0 16px;
         font-size: 1rem;
         text-align: center;
         cursor: pointer;
@@ -85,9 +85,16 @@ body {
         display: flex;
         flex-direction: column;
         .descriptions {
-            max-width: 90%;
-            margin-left: 5%;
-            margin-right: 5%;
+            .description_header {
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    li:first-of-type {
+                        padding-right: 32px;
+                    }
+                }
+            }
         }
     }
 }
@@ -105,6 +112,10 @@ body {
             flex-direction: row;
             justify-content: space-between;
             align-items: flex-start;
+            .descriptions {
+                max-width: 90%;
+                margin: auto;
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ function FilteringLists() {
 
     function filteringFullTimeJobs() {
         const fullTimeJobs = data.filter(item => item.type == "Full Time")
-        dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: [...fultimefiltered, fullTimeJobs]})
+        dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
     }
 
     return (
