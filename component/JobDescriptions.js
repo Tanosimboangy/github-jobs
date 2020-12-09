@@ -76,9 +76,7 @@ function JobDescriptions({data}) {
                                 </li>
                             </ul>
                         </div>
-                        <ReactMarkdown>
-                            {item.description}
-                        </ReactMarkdown>
+                        <ReactMarkdown>{item.description}</ReactMarkdown>
                     </div>
                 )
             })
