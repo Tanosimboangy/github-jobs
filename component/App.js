@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from "./Header";
-import Details from "./Details";
+import JobDescriptions from "./JobDescriptions";
 import MainLists from "./MainLists";
-import { Context } from "./context";
+import { GlobalContext } from "./GlobalContext";
 
 function App() {
     // Accessing the state by using useContext
-    const { state } = useContext(Context);
+    const { state, dispatch } = useContext(GlobalContext);
     // Grab the data from the state
     const { data } = state
 
@@ -16,11 +16,20 @@ function App() {
             <h1>Github Jobs</h1>
             <Switch>
                 <Route exact path="/">
-                    <Header />
-                    <MainLists data={data} />
+                    <Header 
+                        data={data} 
+                        dispatch={dispatch}
+                    />
+                    <MainLists 
+                        data={data} 
+                        dispatch={dispatch}
+                    />
                 </Route>
                 <Route path="/:detail">
-                    <Details />
+                    <JobDescriptions
+                        data={data} 
+                        dispatch={dispatch}
+                    />
                 </Route>
             </Switch>
         </>

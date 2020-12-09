@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Context} from './context';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
@@ -44,12 +43,9 @@ const LinkToGoBack = styled.div`
         }
     }
 `
-function Details() {
+function JobDescriptions({data}) {
     const { detail } = useParams();
-    const { state } = useContext(Context);
-    const { data } = state;
     const detailItem = data.filter(item => item.id === detail);
-    console.log(detailItem);
 
     return (
         <div className="details_container">
@@ -91,4 +87,4 @@ function Details() {
     )
 }
 
-export default Details
+export default JobDescriptions;

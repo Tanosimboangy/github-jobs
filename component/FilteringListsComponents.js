@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Context } from './context';
 
 const FilteringForm = styled.div`
-    padding-left: 12px;
+    padding-left: 2.5%;
     padding-bottom: 25px;
 `
 const InputLocation = styled.div`
@@ -27,11 +26,8 @@ const InputLocation = styled.div`
     }
 `
 
-function FilteringLists() {
+function FilteringListsComponents({data, dispatch}) {
     const [locationState, setLocationState] = useState("");
-    const { state, dispatch} = useContext(Context);
-    const { data } = state;
-    console.log(data);
 
     // Filtering the jobs according to the the type of them
     function filteringFullTimeJobs() {
@@ -51,8 +47,6 @@ function FilteringLists() {
     // Filtering the jobs by the value of one of the four buttons
     function filteringJobs(e) {
         const el = e.target.value
-        console.log(el);
-        console.log("I am her");
         const FilteredJobs = data.filter(item => item.title === el || item.company === el || item.location === el);  
         dispatch({type: 'FILTERING_JOBS', filteredJobs: FilteredJobs})
     }
@@ -119,4 +113,4 @@ function FilteringLists() {
     )
 }
 
-export default FilteringLists
+export default FilteringListsComponents

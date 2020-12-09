@@ -1,12 +1,12 @@
 import React from 'react';
-import FilteringLists from './FilteringLists';
-import ShowingLists from './ShowingLists';
+import FilteringListsComponents from './FilteringListsComponents';
+import ShowingJobsLists from './ShowingJobsLists';
 
-function MainLists({data}) {
+function MainLists({data, dispatch}) {
     return (
         <main className="main">
-            <FilteringLists />
-            <ShowingLists data={data}/>
+            <FilteringListsComponents data={data} dispatch={dispatch} />
+            <ShowingJobsLists data={data}/>
         </main>
     )
 }

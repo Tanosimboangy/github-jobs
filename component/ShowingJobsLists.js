@@ -20,7 +20,7 @@ const DisplayListsStyled = styled.div`
         padding-bottom: 17px;
         img {
             max-width: 150px;
-            height: 100px;
+            height: 60px;
             border-radius: 8px;
             padding-right: 16px;
         }
@@ -52,10 +52,30 @@ const DisplayListsContainerStyled = styled.div`
     margin-left: 4%;
     margin-right: 4%;
 `
+const DisplayLocationandTimeStyled = styled.ul`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 40%;
+    li {
+        font-family: "Roboto_regular";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #B9BDCF;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img {
+            padding-right: 10px;
+        }
+    }
+`
+function ShowingJobsLists({data}) {
 
-function ShowingLists({data}) {
-
-    // Here where I display and show the list of the data
+    // Here where I display and show the list of the jobs with all of their contents
     return (
         <DisplayListsContainerStyled>
             {data.map(item => {
@@ -70,10 +90,10 @@ function ShowingLists({data}) {
                                     <li><button className="fulltime_button">{item.type}</button></li>
                                 </ul>
                             </div>
-                            <ul style={{display: "flex", flexDirection:'row', alignItems: 'center', marginLeft: 'auto'}}>
-                                <li  style={{display: "flex", flexDirection:'row', alignItems: 'center', paddingRight:"20px"}}><img src={globe} alt="this is the location"/> {item.location}</li>
-                                <li  style={{display: "flex", flexDirection:'row', alignItems: 'center'}}><img src={time} alt="this when it is realesed"/> {item.created_at}</li>
-                            </ul>
+                            <DisplayLocationandTimeStyled>
+                                <li><img src={globe} alt="this is the location"/> {item.location}</li>
+                                <li><img src={time} alt="this when it is realesed"/> {item.created_at}</li>
+                            </DisplayLocationandTimeStyled>
                         </Link>
                     </DisplayListsStyled>
                 )
@@ -81,4 +101,4 @@ function ShowingLists({data}) {
         </DisplayListsContainerStyled>
     )
 }
-export default ShowingLists;
+export default ShowingJobsLists;

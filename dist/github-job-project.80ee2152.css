@@ -1,6 +1,5 @@
 body {
   background: #6262ff10;
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   font-style: normal;
 }
@@ -24,7 +23,7 @@ body h1 {
   line-height: 36px;
   color: #282538;
   padding-bottom: 32px;
-  padding-left: 12px;
+  padding-left: 2.5%;
   padding-top: 32px;
 }
 body .header_submit {
@@ -58,7 +57,7 @@ body .fulltime_button {
   box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
 }
 body .header {
-  background-image: url(/backgroundImg.f44d7848.png);
+  background-image: url(/backgroundImg.9f5bd77c.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -86,26 +85,37 @@ body .details_container .descriptions .description_header ul {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  color: #334680;
+  font-family: "Roboto_bold";
 }
 body .details_container .descriptions .description_header ul li:first-of-type {
   padding-right: 20px;
   padding-bottom: 10px;
+}
+body .details_container .descriptions .description_header ul li:first-of-type h2 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  max-width: 400px;
 }
 body .details_container .descriptions .description_header ul li:nth-of-type(2) {
   width: 100px;
   padding: 10px;
   border: 1px solid blue;
   border-radius: 10px;
-  font-family: "Roboto_bold";
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
-  color: #334680;
 }
 body .details_container .descriptions .description_header div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-family: "Roboto_regular";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #B7BCCE;
 }
 body .details_container .descriptions div:nth-of-type(2) ul {
   display: flex;
@@ -141,6 +151,10 @@ body .details_container .descriptions div:nth-of-type(2) ul li:nth-of-type(2) sp
 }
 
 @media (min-width: 720px) {
+  body {
+    max-width: 90%;
+    margin: auto;
+  }
   body .main {
     display: flex;
     flex-direction: row;

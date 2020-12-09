@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-const Context = React.createContext();
+const GlobalContext = React.createContext();
 import axios from "axios";
 
 // These links are the links for the cors and the cors
@@ -69,9 +69,9 @@ function ContextProvider({children}) {
       }, [])
 
     return(
-        <Context.Provider value={{state, dispatch}}>
+        <GlobalContext.Provider value={{state, dispatch}}>
             {children}
-        </Context.Provider>
+        </GlobalContext.Provider>
     )
 }
-export  { Context, ContextProvider }
+export  { GlobalContext, ContextProvider }

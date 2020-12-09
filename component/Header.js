@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { Context } from './context';
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import globe from '../img/globe.svg';
 
@@ -32,15 +31,13 @@ const FormFiltering = styled.form`
     }
 `
 
-function Header() {
-    const { state, dispatch} = useContext(Context);
-    const { data } = state;
+function Header({data, dispatch}) {
     const [searchInput, setSearchInput] = useState('');
 
     // Filtering the jobs by the title, name of the company and 
     function FilteringJobs(e) {
         e.preventDefault();
-        const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(searchInput) || item.company.toLowerCase().includes(searchInput) || item.location.toLowerCase().includes(searchInput));  
+        const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(searchInput) || item.company.toLowerCase().includes(searchInput) || item.description.toLowerCase().includes(searchInput) || item.location.toLowerCase().includes(searchInput) );  
         dispatch({type:'FILTERING_JOB', locationfiltered: collectionOfJobs})
         setSearchInput("");
     }
