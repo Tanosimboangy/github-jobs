@@ -1,9 +1,4 @@
-<!-- https://github-jobs-jacquit-netlify-app.netlify.app/ -->
 
-
-# Github Jobs
-
-Here we are, the last graded project of this semester.
 
 Your challenge: Create a job search using an API, and use React to handle the frontend. Don’t look at the existing solution. Fulfill user stories below:
 
@@ -44,15 +39,15 @@ Template for your readme :
 
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">Github Jobs</h1>
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://github-jobs-jacquit-netlify-app.netlify.app">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://github.com/Tanosimboangy/github-jobs">
       Solution
     </a>
   </h3>
