@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import arrow_back from '../img/arrow_back.svg';
 import time from '../img/time.svg';
 
@@ -46,6 +46,7 @@ const LinkToGoBack = styled.div`
 function JobDescriptions({data}) {
     const { detail } = useParams();
     const detailItem = data.filter(item => item.id === detail);
+    
 
     return (
         <div className="details_container">
@@ -75,10 +76,7 @@ function JobDescriptions({data}) {
                                 </li>
                             </ul>
                         </div>
-                        <ReactMarkdown
-                            escapeHtml={true}
-                            source={ContentMarkdown} 
-                        />
+                        <p dangerouslySetInnerHTML={{ __html: item.description}} />
                     </div>
                 )})
             }

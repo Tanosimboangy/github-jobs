@@ -4,12 +4,43 @@ import styled from 'styled-components';
 const FilteringForm = styled.div`
     padding-left: 2.5%;
     padding-bottom: 25px;
+    div {
+        font-family: "Poppins_regular";
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        color: #334680;
+    }
+    ul {
+        font-family: "Poppins_regular";
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        color: #334680;
+        li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-bottom: 10px;
+            input {
+                margin: 0;
+            }
+            label {
+                padding-left: 16px;
+            }
+        }
+
+    }
 `
 const InputLocation = styled.div`
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
     padding-top: 20px;
+    label {
+        padding-bottom: 10px;
+    }
     input {
         border: none;
         background-color: white;
@@ -52,6 +83,7 @@ function FilteringListsComponents({data, dispatch, loading}) {
     }
 
     return (
+
         <>
             <FilteringForm>
                 <div>
@@ -75,40 +107,36 @@ function FilteringListsComponents({data, dispatch, loading}) {
                 </InputLocation>
                 <ul>
                     <li>
-                        <label htmlFor="London">
-                            <input 
-                                type="checkbox"
-                                onChange={filteringJobs} 
-                                value="london"
-                                id="London"/> London
-                        </label>
+                        <input 
+                            type="checkbox"
+                            onChange={filteringJobs} 
+                            value="london"
+                            id="London"/> 
+                        <label htmlFor="London">London</label>
                     </li>
                     <li>
-                        <label htmlFor="Asterdam">
-                            <input 
-                                type="checkbox"
-                                onChange={filteringJobs} 
-                                value="amsterdam"
-                                id="Amsterdam"/> Amsterdam
-                        </label>
+                        <input 
+                            type="checkbox"
+                            onChange={filteringJobs} 
+                            value="amsterdam"
+                            id="Amsterdam"/> 
+                        <label htmlFor="Asterdam">Amsterdam</label>
                     </li>
                     <li>
-                        <label htmlFor="New_York">
-                            <input 
-                                type="checkbox"
-                                onChange={filteringJobs} 
-                                value="new york"
-                                id="New_York"/> New Work
-                        </label>
+                        <input 
+                            type="checkbox"
+                            onChange={filteringJobs} 
+                            value="new york"
+                            id="New_York"/> 
+                        <label htmlFor="New_York">New Work</label>
                     </li>
                     <li>
-                        <label htmlFor="Berlin">
-                            <input 
-                                type="checkbox"
-                                onChange={locationFiltering} 
-                                value="berlin"
-                                id="Berlin"/> Berlin
-                        </label>
+                        <input 
+                            type="checkbox"
+                            onChange={locationFiltering} 
+                            value="berlin"
+                            id="Berlin"/> 
+                        <label htmlFor="Berlin">Berlin</label>
                     </li>
                 </ul>
             </FilteringForm>

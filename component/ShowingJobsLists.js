@@ -19,7 +19,7 @@ const DisplayListsStyled = styled.div`
         align-items: flex-start;
         padding-bottom: 17px;
         img {
-            max-width: 150px;
+            max-width: 25%;
             border-radius: 8px;
             padding-right: 16px;
         }
