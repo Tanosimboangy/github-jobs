@@ -78,7 +78,7 @@ body .details_container {
   flex-direction: column;
 }
 body .details_container .descriptions {
-  margin-left: 5%;
+  margin-left: 2.5%;
   margin-right: 5%;
 }
 body .details_container .descriptions .description_header ul {

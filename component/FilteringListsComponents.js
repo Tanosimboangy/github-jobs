@@ -26,14 +26,14 @@ const InputLocation = styled.div`
     }
 `
 
-function FilteringListsComponents({data, dispatch}) {
+function FilteringListsComponents({data, dispatch, loading}) {
     const [locationState, setLocationState] = useState("");
 
     // Filtering the jobs according to the the type of them
-    function filteringFullTimeJobs() {
-        const fullTimeJobs = data.filter(item => item.type === "Full Time")
-        console.log(fullTimeJobs);
-        dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fultimefiltered: fullTimeJobs})
+    function filteringFullTimeJobs(e) {
+        const fulltime = e.target.value;
+        const fullTimeJobs = data.filter(item => item.type === fulltime);
+        dispatch ({type: 'FILTERING_FULL_TIME_JOBS', fullTimeJobsFiltered: fullTimeJobs})
     }
     
     // Filtering the jobs by the written value form the user
@@ -52,64 +52,68 @@ function FilteringListsComponents({data, dispatch}) {
     }
 
     return (
-        <FilteringForm>
-            <div>
-                <label htmlFor="input">
-                <input 
-                    type="checkbox" 
-                    onChange={filteringFullTimeJobs} 
-                    id="input"/> Full time
-                </label>
-            </div>
-            <InputLocation>
-                <label htmlFor="location"> LOCATION</label>
-                <input 
-                    type="text" 
-                    id="location"
-                    placeholder="City, state, zip code or country" 
-                    value={locationState} 
-                    onChange={locationFiltering}
-                />
-            </InputLocation>
-            <ul>
-                <li>
-                    <label htmlFor="London">
-                        <input 
-                            type="checkbox"
-                            onChange={filteringJobs} 
-                            value="london"
-                            id="London"/> London
+        <>
+            <FilteringForm>
+                <div>
+                    <label htmlFor="input">
+                    <input 
+                        type="checkbox" 
+                        value="Full Time"
+                        onChange={filteringFullTimeJobs} 
+                        id="input"/> Full time
                     </label>
-                </li>
-                <li>
-                    <label htmlFor="Asterdam">
-                        <input 
-                            type="checkbox"
-                            onChange={filteringJobs} 
-                            value="amsterdam"
-                            id="Amsterdam"/> Amsterdam
-                    </label>
-                </li>
-                <li>
-                    <label htmlFor="New_York">
-                        <input 
-                            type="checkbox"
-                            onChange={filteringJobs} 
-                            value="new york"
-                            id="New_York"/> New Work
-                    </label>
-                </li>
-                <li>
-                    <label htmlFor="Berlin">
-                        <input 
-                            type="checkbox"
-                            onChange={locationFiltering} 
-                            value="berlin"
-                            id="Berlin"/> Berlin
-                    </label>
-                </li>
-            </ul>
-        </FilteringForm>
+                </div>
+                <InputLocation>
+                    <label htmlFor="location"> LOCATION</label>
+                    <input 
+                        type="text" 
+                        id="location"
+                        placeholder="City, state, zip code or country" 
+                        value={locationState} 
+                        onChange={locationFiltering}
+                    />
+                </InputLocation>
+                <ul>
+                    <li>
+                        <label htmlFor="London">
+                            <input 
+                                type="checkbox"
+                                onChange={filteringJobs} 
+                                value="london"
+                                id="London"/> London
+                        </label>
+                    </li>
+                    <li>
+                        <label htmlFor="Asterdam">
+                            <input 
+                                type="checkbox"
+                                onChange={filteringJobs} 
+                                value="amsterdam"
+                                id="Amsterdam"/> Amsterdam
+                        </label>
+                    </li>
+                    <li>
+                        <label htmlFor="New_York">
+                            <input 
+                                type="checkbox"
+                                onChange={filteringJobs} 
+                                value="new york"
+                                id="New_York"/> New Work
+                        </label>
+                    </li>
+                    <li>
+                        <label htmlFor="Berlin">
+                            <input 
+                                type="checkbox"
+                                onChange={locationFiltering} 
+                                value="berlin"
+                                id="Berlin"/> Berlin
+                        </label>
+                    </li>
+                </ul>
+            </FilteringForm>
+            {loading && <h1>Loading...</h1>}
+        </>
     )
 }
 

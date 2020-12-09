@@ -14,7 +14,6 @@ function ContextProvider({children}) {
                     ...state,
                     loading: false,
                     data: action.playload,
-                    loading: true,
                 }
             }
             case 'FILTERING_JOB': {
@@ -32,7 +31,7 @@ function ContextProvider({children}) {
             case 'FILTERING_FULL_TIME_JOBS': {
                 return {
                     ...state,
-                    data:  action.locationfiltered,
+                    data: action.fullTimeJobsFiltered,
                 }
             }
             case 'FETCH_FAILED' : return {
@@ -48,7 +47,6 @@ function ContextProvider({children}) {
     }, {
       data: [ ],
       loading: true,
-      loading: false,
       description: '',
     })
 
@@ -57,7 +55,7 @@ function ContextProvider({children}) {
         axios
           .get(CORS_KEY + API_URL)
           .then(res => {
-            dispatch({ type: 'FETCHING_DATA', playload : res.data })
+            dispatch({ type: 'FETCHING_DATA', playload : res.data } )    
           })
           .catch(error => {
             dispatch({type : "FETCH_FAILED" })
@@ -69,7 +67,8 @@ function ContextProvider({children}) {
       }, [])
 
     return(
-        <GlobalContext.Provider value={{state, dispatch}}>
+        <GlobalContext.Provider 
+            value={{state, dispatch}}>
             {children}
         </GlobalContext.Provider>
     )

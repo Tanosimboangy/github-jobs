@@ -43,19 +43,21 @@ function Header({data, dispatch}) {
     }
 
     return (
-        <FormHeader className="header">
-            <FormFiltering onSubmit={FilteringJobs}>
-                <img src={globe} alt="this is a globe"/>
-                <input
-                    type="text" 
-                    placeholder="Title, companies, expertise or benefits"
-                    value={searchInput} 
-                    onChange={e => setSearchInput(e.target.value)}
-                    required 
-                />
-                <button className="header_submit" type="submit">Search</button>
-            </FormFiltering>
-        </FormHeader>
+        <>
+            <FormHeader className="header">
+                <FormFiltering onSubmit={FilteringJobs}>
+                    <img src={globe} alt="this is a globe"/>
+                    <input
+                        type="text" 
+                        placeholder="Title, companies, expertise or benefits"
+                        value={searchInput} 
+                        onChange={e => setSearchInput(e.target.value)}
+                        required 
+                    />
+                    <button className="header_submit" type="submit">Search</button>
+                </FormFiltering>
+            </FormHeader>
+        </>
     )
 }
 

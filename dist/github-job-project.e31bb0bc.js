@@ -36480,7 +36480,7 @@ function Header({
     setSearchInput("");
   }
 
-  return /*#__PURE__*/_react.default.createElement(FormHeader, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(FormHeader, {
     className: "header"
   }, /*#__PURE__*/_react.default.createElement(FormFiltering, {
     onSubmit: FilteringJobs
@@ -36496,7 +36496,7 @@ function Header({
   }), /*#__PURE__*/_react.default.createElement("button", {
     className: "header_submit",
     type: "submit"
-  }, "Search")));
+  }, "Search"))));
 }
 
 var _default = Header;
@@ -45693,7 +45693,7 @@ const LinkToGoBack = _styledComponents.default.div`
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding-left: 12px;
+            padding-left: 2.5%;
             padding-bottom: 20px;
             font-weight: 600;
             font-size: 16px;
@@ -45708,7 +45708,7 @@ const LinkToGoBack = _styledComponents.default.div`
         line-height: 21px;
         text-transform: uppercase;
         color: #B9BDCF;
-        padding-left: 12px;
+        padding-left: 2.5%;
         padding-bottom: 16px;
     }
     div {
@@ -45717,7 +45717,7 @@ const LinkToGoBack = _styledComponents.default.div`
         font-size: 16px;
         line-height: 21px;
         color: #334680;
-        padding-left: 12px;
+        padding-left: 2.5%;
         padding-bottom: 36px;
         max-width: 240px;
         a {
@@ -45754,7 +45754,10 @@ function JobDescriptions({
       src: _time.default
     }), " ", new Date(item.created_at).toLocaleDateString(), " days ago.")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("img", {
       src: item.company_logo
-    })), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h4", null, item.company), /*#__PURE__*/_react.default.createElement("span", null, item.location)))), /*#__PURE__*/_react.default.createElement(_reactMarkdown.default, null, item.description));
+    })), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("h4", null, item.company), /*#__PURE__*/_react.default.createElement("span", null, item.location)))), /*#__PURE__*/_react.default.createElement(_reactMarkdown.default, {
+      escapeHtml: true,
+      source: ContentMarkdown
+    }));
   }));
 }
 
@@ -45805,16 +45808,17 @@ const InputLocation = _styledComponents.default.div`
 
 function FilteringListsComponents({
   data,
-  dispatch
+  dispatch,
+  loading
 }) {
   const [locationState, setLocationState] = (0, _react.useState)(""); // Filtering the jobs according to the the type of them
 
-  function filteringFullTimeJobs() {
-    const fullTimeJobs = data.filter(item => item.type === "Full Time");
-    console.log(fullTimeJobs);
+  function filteringFullTimeJobs(e) {
+    const fulltime = e.target.value;
+    const fullTimeJobs = data.filter(item => item.type === fulltime);
     dispatch({
       type: 'FILTERING_FULL_TIME_JOBS',
-      fultimefiltered: fullTimeJobs
+      fullTimeJobsFiltered: fullTimeJobs
     });
   } // Filtering the jobs by the written value form the user
 
@@ -45839,10 +45843,11 @@ function FilteringListsComponents({
     });
   }
 
-  return /*#__PURE__*/_react.default.createElement(FilteringForm, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(FilteringForm, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "input"
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
+    value: "Full Time",
     onChange: filteringFullTimeJobs,
     id: "input"
   }), " Full time")), /*#__PURE__*/_react.default.createElement(InputLocation, null, /*#__PURE__*/_react.default.createElement("label", {
@@ -45881,7 +45886,7 @@ function FilteringListsComponents({
     onChange: locationFiltering,
     value: "berlin",
     id: "Berlin"
-  }), " Berlin"))));
+  }), " Berlin")))), loading && /*#__PURE__*/_react.default.createElement("h1", null, "Loading..."));
 }
 
 var _default = FilteringListsComponents;
@@ -45922,7 +45927,6 @@ const DisplayListsStyled = _styledComponents.default.div`
         padding-bottom: 17px;
         img {
             max-width: 150px;
-            height: 60px;
             border-radius: 8px;
             padding-right: 16px;
         }
@@ -46019,13 +46023,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function MainLists({
   data,
-  dispatch
+  dispatch,
+  loading
 }) {
   return /*#__PURE__*/_react.default.createElement("main", {
     className: "main"
   }, /*#__PURE__*/_react.default.createElement(_FilteringListsComponents.default, {
     data: data,
-    dispatch: dispatch
+    dispatch: dispatch,
+    loading: loading
   }), /*#__PURE__*/_react.default.createElement(_ShowingJobsLists.default, {
     data: data
   }));
@@ -47643,8 +47649,7 @@ function ContextProvider({
         {
           return { ...state,
             loading: false,
-            data: action.playload,
-            loading: true
+            data: action.playload
           };
         }
 
@@ -47665,7 +47670,7 @@ function ContextProvider({
       case 'FILTERING_FULL_TIME_JOBS':
         {
           return { ...state,
-            data: action.locationfiltered
+            data: action.fullTimeJobsFiltered
           };
         }
 
@@ -47685,7 +47690,6 @@ function ContextProvider({
   }, {
     data: [],
     loading: true,
-    loading: false,
     description: ''
   }); // Fetching the data with axios
 
@@ -47738,6 +47742,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+// import JobContext from "./JobContext";
 function App() {
   // Accessing the state by using useContext
   const {
@@ -47746,7 +47751,8 @@ function App() {
   } = (0, _react.useContext)(_GlobalContext.GlobalContext); // Grab the data from the state
 
   const {
-    data
+    data,
+    loading
   } = state;
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "Github Jobs"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
@@ -47756,7 +47762,8 @@ function App() {
     dispatch: dispatch
   }), /*#__PURE__*/_react.default.createElement(_MainLists.default, {
     data: data,
-    dispatch: dispatch
+    dispatch: dispatch,
+    loading: loading
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/:detail"
   }, /*#__PURE__*/_react.default.createElement(_JobDescriptions.default, {
@@ -47811,7 +47818,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51575" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55018" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

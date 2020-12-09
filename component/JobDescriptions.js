@@ -11,7 +11,7 @@ const LinkToGoBack = styled.div`
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding-left: 12px;
+            padding-left: 2.5%;
             padding-bottom: 20px;
             font-weight: 600;
             font-size: 16px;
@@ -26,7 +26,7 @@ const LinkToGoBack = styled.div`
         line-height: 21px;
         text-transform: uppercase;
         color: #B9BDCF;
-        padding-left: 12px;
+        padding-left: 2.5%;
         padding-bottom: 16px;
     }
     div {
@@ -35,7 +35,7 @@ const LinkToGoBack = styled.div`
         font-size: 16px;
         line-height: 21px;
         color: #334680;
-        padding-left: 12px;
+        padding-left: 2.5%;
         padding-bottom: 36px;
         max-width: 240px;
         a {
@@ -56,8 +56,7 @@ function JobDescriptions({data}) {
                 <h3>How to Apply</h3>
                 <div>Please email a copy of your resume and online portfolio to <a href="https://kasisto.com/">kasisto.com</a> & CC <a href="https://kasisto.com/">eric@kasisto.com</a></div>
             </LinkToGoBack>
-            { 
-            detailItem.map(item => {
+            {detailItem.map(item => {
                 return (
                     <div className="descriptions" key={item.id}>
                         <div className="description_header">
@@ -76,10 +75,12 @@ function JobDescriptions({data}) {
                                 </li>
                             </ul>
                         </div>
-                        <ReactMarkdown>{item.description}</ReactMarkdown>
+                        <ReactMarkdown
+                            escapeHtml={true}
+                            source={ContentMarkdown} 
+                        />
                     </div>
-                )
-            })
+                )})
             }
         </div>
     )

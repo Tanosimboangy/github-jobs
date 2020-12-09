@@ -20,7 +20,6 @@ const DisplayListsStyled = styled.div`
         padding-bottom: 17px;
         img {
             max-width: 150px;
-            height: 60px;
             border-radius: 8px;
             padding-right: 16px;
         }
