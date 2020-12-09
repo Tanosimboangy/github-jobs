@@ -93,7 +93,7 @@ body {
                 line-height: 150%;
                 color: #334680;
                 padding-top: 10px;
-                padding-b: 10px;
+                padding-bottom: 10px;
             }
             .description_header {
                 ul {
@@ -192,6 +192,11 @@ body {
                 margin-left: 10%;
                 margin-right: 0;
             }
+        }
+        .display_jobs_lists {
+            max-width: 80%;
+            margin-right: 0;
+            margin-left: 20%;
         }
     }
 }

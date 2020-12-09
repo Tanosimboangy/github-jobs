@@ -59,6 +59,7 @@ const InputLocation = styled.div`
 
 function FilteringListsComponents({data, dispatch, loading}) {
     const [locationState, setLocationState] = useState("");
+    // const [newState, setNewState] = useState("");
 
     // Filtering the jobs according to the the type of them
     function filteringFullTimeJobs(e) {
@@ -71,15 +72,15 @@ function FilteringListsComponents({data, dispatch, loading}) {
     function locationFiltering(e) {
         setLocationState(e.target.value);
         const newLocationState = locationState.toLowerCase();
-        const newLocatedJob = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));  
-        dispatch({type: 'FILTERING_LOCATION_JOBS', locationfiltered: newLocatedJob})
+        const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.description.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState) );  
+        dispatch({type: 'FILTERING_JOBS', filteredJobs: collectionOfJobs})
     }
 
     // Filtering the jobs by the value of one of the four buttons
-    function filteringJobs(e) {
+    function countryFiltering(e) {
         const el = e.target.value
         const FilteredJobs = data.filter(item => item.title === el || item.company === el || item.location === el);  
-        dispatch({type: 'FILTERING_JOBS', filteredJobs: FilteredJobs})
+        dispatch({type: 'FILTERED_JOBS', filteredJob: FilteredJobs})
     }
 
     return (
@@ -101,7 +102,7 @@ function FilteringListsComponents({data, dispatch, loading}) {
                         type="text" 
                         id="location"
                         placeholder="City, state, zip code or country" 
-                        value={locationState} 
+                        value={locationState}
                         onChange={locationFiltering}
                     />
                 </InputLocation>
@@ -109,7 +110,7 @@ function FilteringListsComponents({data, dispatch, loading}) {
                     <li>
                         <input 
                             type="checkbox"
-                            onChange={filteringJobs} 
+                            onChange={countryFiltering}
                             value="london"
                             id="London"/> 
                         <label htmlFor="London">London</label>
@@ -117,7 +118,7 @@ function FilteringListsComponents({data, dispatch, loading}) {
                     <li>
                         <input 
                             type="checkbox"
-                            onChange={filteringJobs} 
+                            onChange={countryFiltering}
                             value="amsterdam"
                             id="Amsterdam"/> 
                         <label htmlFor="Asterdam">Amsterdam</label>
@@ -125,7 +126,7 @@ function FilteringListsComponents({data, dispatch, loading}) {
                     <li>
                         <input 
                             type="checkbox"
-                            onChange={filteringJobs} 
+                            onChange={countryFiltering}
                             value="new york"
                             id="New_York"/> 
                         <label htmlFor="New_York">New Work</label>
@@ -133,7 +134,7 @@ function FilteringListsComponents({data, dispatch, loading}) {
                     <li>
                         <input 
                             type="checkbox"
-                            onChange={locationFiltering} 
+                            onChange={countryFiltering}
                             value="berlin"
                             id="Berlin"/> 
                         <label htmlFor="Berlin">Berlin</label>

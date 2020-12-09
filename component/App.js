@@ -14,7 +14,7 @@ function App() {
 
     return (
         <>
-            <h1>Github Jobs</h1>
+            <h1><b>Github</b> Jobs</h1>
             {/* <JobContext data={data} dispatch={dispatch}> */}
                 <Switch>
                     <Route exact path="/">

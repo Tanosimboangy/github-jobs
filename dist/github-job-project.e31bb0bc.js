@@ -36682,7 +36682,8 @@ function FilteringListsComponents({
   dispatch,
   loading
 }) {
-  const [locationState, setLocationState] = (0, _react.useState)(""); // Filtering the jobs according to the the type of them
+  const [locationState, setLocationState] = (0, _react.useState)(""); // const [newState, setNewState] = useState("");
+  // Filtering the jobs according to the the type of them
 
   function filteringFullTimeJobs(e) {
     const fulltime = e.target.value;
@@ -36697,20 +36698,20 @@ function FilteringListsComponents({
   function locationFiltering(e) {
     setLocationState(e.target.value);
     const newLocationState = locationState.toLowerCase();
-    const newLocatedJob = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));
+    const collectionOfJobs = data.filter(item => item.title.toLowerCase().includes(newLocationState) || item.company.toLowerCase().includes(newLocationState) || item.description.toLowerCase().includes(newLocationState) || item.location.toLowerCase().includes(newLocationState));
     dispatch({
-      type: 'FILTERING_LOCATION_JOBS',
-      locationfiltered: newLocatedJob
+      type: 'FILTERING_JOBS',
+      filteredJobs: collectionOfJobs
     });
   } // Filtering the jobs by the value of one of the four buttons
 
 
-  function filteringJobs(e) {
+  function countryFiltering(e) {
     const el = e.target.value;
     const FilteredJobs = data.filter(item => item.title === el || item.company === el || item.location === el);
     dispatch({
-      type: 'FILTERING_JOBS',
-      filteredJobs: FilteredJobs
+      type: 'FILTERED_JOBS',
+      filteredJob: FilteredJobs
     });
   }
 
@@ -36731,28 +36732,28 @@ function FilteringListsComponents({
     onChange: locationFiltering
   })), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
-    onChange: filteringJobs,
+    onChange: countryFiltering,
     value: "london",
     id: "London"
   }), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "London"
   }, "London")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
-    onChange: filteringJobs,
+    onChange: countryFiltering,
     value: "amsterdam",
     id: "Amsterdam"
   }), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "Asterdam"
   }, "Amsterdam")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
-    onChange: filteringJobs,
+    onChange: countryFiltering,
     value: "new york",
     id: "New_York"
   }), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "New_York"
   }, "New Work")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
-    onChange: locationFiltering,
+    onChange: countryFiltering,
     value: "berlin",
     id: "Berlin"
   }), /*#__PURE__*/_react.default.createElement("label", {
@@ -36789,15 +36790,15 @@ const DisplayListsStyled = _styledComponents.default.div`
     border-radius: 10px; 
     margin-bottom: 16px;
     width: 95%;
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
     div {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
         padding-bottom: 17px;
         img {
-            max-width: 25%;
+            max-width: 20%;
             border-radius: 8px;
             padding-right: 16px;
         }
@@ -36834,7 +36835,8 @@ const DisplayLocationandTimeStyled = _styledComponents.default.ul`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: 40%;
+    max-width: 300px;
+    margin-left: auto;
     li {
         font-family: "Roboto_regular";
         font-style: normal;
@@ -36857,6 +36859,7 @@ function ShowingJobsLists({
   // Here where I display and show the list of the jobs with all of their contents
   return /*#__PURE__*/_react.default.createElement(DisplayListsContainerStyled, null, data.map(item => {
     return /*#__PURE__*/_react.default.createElement(DisplayListsStyled, {
+      className: "display_jobs_lists",
       key: item.id
     }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/${item.id}`
@@ -38625,7 +38628,7 @@ function App() {
     data,
     loading
   } = state;
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "Github Jobs"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("b", null, "Github"), " Jobs"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Header.default, {

@@ -11,15 +11,15 @@ const DisplayListsStyled = styled.div`
     border-radius: 10px; 
     margin-bottom: 16px;
     width: 95%;
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
     div {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
         padding-bottom: 17px;
         img {
-            max-width: 25%;
+            max-width: 20%;
             border-radius: 8px;
             padding-right: 16px;
         }
@@ -56,7 +56,8 @@ const DisplayLocationandTimeStyled = styled.ul`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: 40%;
+    max-width: 300px;
+    margin-left: auto;
     li {
         font-family: "Roboto_regular";
         font-style: normal;
@@ -79,7 +80,7 @@ function ShowingJobsLists({data}) {
         <DisplayListsContainerStyled>
             {data.map(item => {
                 return (
-                    <DisplayListsStyled key={item.id}>
+                    <DisplayListsStyled className="display_jobs_lists" key={item.id}>
                         <Link to={`/${item.id}`}>
                             <div>
                                 <img src={item.company_logo} />
