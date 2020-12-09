@@ -17,7 +17,7 @@ body {
         text-decoration: none;
     }
     h1 {
-        // font-family: Poppins;
+        font-family: "Poppins_bold";
         font-weight: bold;
         font-size: 24px;
         line-height: 36px;
@@ -85,13 +85,66 @@ body {
         display: flex;
         flex-direction: column;
         .descriptions {
+            margin-left: 5%;
+            margin-right: 5%;
             .description_header {
                 ul {
                     display: flex;
                     flex-direction: row;
                     align-items: flex-start;
                     li:first-of-type {
-                        padding-right: 32px;
+                        padding-right: 20px;
+                        padding-bottom: 10px;
+                    }
+                    li:nth-of-type(2) {
+                        width: 100px;
+                        padding: 10px;
+                        border: 1px solid blue;
+                        border-radius: 10px;
+                        font-family: "Roboto_bold";
+                        font-weight: bold;
+                        font-size: 12px;
+                        line-height: 14px;
+                        color: #334680;
+                    }
+                }
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+            div:nth-of-type(2) {
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    padding-top: 32px;
+                    padding-bottom: 32px;
+                    li:first-of-type {
+                        padding-right: 20px;
+                        img {
+                            width: 120px;
+                        }
+                    }
+                    li:nth-of-type(2) {
+                        display: flex;
+                        flex-direction: column;
+                        h4 {
+                            font-family: "Roboto_bold";
+                            padding-bottom: 10px;
+                            font-weight: bold;
+                            font-size: 18px;
+                            line-height: 21px;
+                            color: #334680;
+                        }
+                        span {
+                            font-family: "Roboto_regular";
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: #B9BDCF;
+                        }
                     }
                 }
             }

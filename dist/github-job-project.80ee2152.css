@@ -18,6 +18,7 @@ body a {
   text-decoration: none;
 }
 body h1 {
+  font-family: "Poppins_bold";
   font-weight: bold;
   font-size: 24px;
   line-height: 36px;
@@ -77,13 +78,66 @@ body .details_container {
   display: flex;
   flex-direction: column;
 }
+body .details_container .descriptions {
+  margin-left: 5%;
+  margin-right: 5%;
+}
 body .details_container .descriptions .description_header ul {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 body .details_container .descriptions .description_header ul li:first-of-type {
-  padding-right: 32px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+body .details_container .descriptions .description_header ul li:nth-of-type(2) {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid blue;
+  border-radius: 10px;
+  font-family: "Roboto_bold";
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #334680;
+}
+body .details_container .descriptions .description_header div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+body .details_container .descriptions div:nth-of-type(2) ul {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+body .details_container .descriptions div:nth-of-type(2) ul li:first-of-type {
+  padding-right: 20px;
+}
+body .details_container .descriptions div:nth-of-type(2) ul li:first-of-type img {
+  width: 120px;
+}
+body .details_container .descriptions div:nth-of-type(2) ul li:nth-of-type(2) {
+  display: flex;
+  flex-direction: column;
+}
+body .details_container .descriptions div:nth-of-type(2) ul li:nth-of-type(2) h4 {
+  font-family: "Roboto_bold";
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #334680;
+}
+body .details_container .descriptions div:nth-of-type(2) ul li:nth-of-type(2) span {
+  font-family: "Roboto_regular";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #B9BDCF;
 }
 
 @media (min-width: 720px) {
@@ -103,6 +157,22 @@ body .details_container .descriptions .description_header ul li:first-of-type {
     max-width: 90%;
     margin: auto;
   }
+}
+@font-face {
+  font-family: "Poppins_regular";
+  src: local(Poppins_regular), url(/Poppins-500.7026f120.woff2) format("woff2"), url(/Poppins-500.6db15a2e.woff) format("woff");
+}
+@font-face {
+  font-family: "Poppins_bold";
+  src: local(Poppins_bold), url(/Poppins-700.a2bb43a2.woff2) format("woff2"), url(/Poppins-700.27c2223b.woff) format("woff");
+}
+@font-face {
+  font-family: "Roboto_regular";
+  src: local(Roboto_regular), url(/Roboto-Regular.3e3cc457.woff) format("woff2"), url(/Roboto-Regular.3e3cc457.woff) format("woff");
+}
+@font-face {
+  font-family: "Roboto_bold";
+  src: local(Roboto_bold), url(/Roboto-Bold.4a7d3a36.woff2) format("woff2"), url(/Roboto-Bold.05b33a96.woff) format("woff");
 }
 
 /*# sourceMappingURL=/github-job-project.80ee2152.css.map */

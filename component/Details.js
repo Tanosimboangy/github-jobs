@@ -2,18 +2,18 @@ import React, { useContext } from 'react';
 import { Context} from './context';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 import arrow_back from '../img/arrow_back.svg';
 import time from '../img/time.svg';
 
 const LinkToGoBack = styled.div`
-    /* font-family: Poppins; */
     a {
         div {
             display: flex;
             flex-direction: row;
             align-items: center;
             padding-left: 12px;
-            padding-bottom: 36px;
+            padding-bottom: 20px;
             font-weight: 600;
             font-size: 16px;
             line-height: 21px;
@@ -21,6 +21,7 @@ const LinkToGoBack = styled.div`
         }
     }
     h3 {
+        font-family: "Poppins_bold";
         font-weight: bold;
         font-size: 14px;
         line-height: 21px;
@@ -30,6 +31,7 @@ const LinkToGoBack = styled.div`
         padding-bottom: 16px;
     }
     div {
+        font-family: "Poppins_regular";
         font-weight: 500;
         font-size: 16px;
         line-height: 21px;
@@ -42,17 +44,12 @@ const LinkToGoBack = styled.div`
         }
     }
 `
-// const DescriptionHeader = styled.div`
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-// `
-
 function Details() {
     const { detail } = useParams();
     const { state } = useContext(Context);
     const { data } = state;
     const detailItem = data.filter(item => item.id === detail);
+    console.log(detailItem);
 
     return (
         <div className="details_container">
@@ -69,27 +66,23 @@ function Details() {
                     <div className="descriptions" key={item.id}>
                         <div className="description_header">
                             <ul>
-                                <li>
-                                    <h2>{item.title}</h2>
-                                </li>
-                                <li>
-                                    <button>{item.type}</button>
-                                </li>
+                                <li><h2>{item.title}</h2></li>
+                                <li>{item.type}</li>
                             </ul>
-                            <div><img src={time}/> {new Date(item.created_at).toLocaleDateString()}</div>
+                            <div><img src={time}/> {new Date(item.created_at).toLocaleDateString()} days ago.</div>
                         </div>
                         <div>
                             <ul>
+                                <li><img src={item.company_logo} /></li>
                                 <li>
-                                    <img src={item.company_logo} />
-                                </li>
-                                <li>
-                                    <h4>{item.location}</h4>
-                                    {/* <h4>{item.}</h4> */}
+                                    <h4>{item.company}</h4>
+                                    <span>{item.location}</span>
                                 </li>
                             </ul>
                         </div>
-                        <p>{item.description}</p>
+                        <ReactMarkdown>
+                            {item.description}
+                        </ReactMarkdown>
                     </div>
                 )
             })

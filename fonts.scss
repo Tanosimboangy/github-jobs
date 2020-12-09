@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "Poppins_regular";
+    src: local(Poppins_regular), 
+    url(./fonts/Poppins-500.woff2) format("woff2"), 
+    url(./fonts/Poppins-500.woff) format("woff"), 
+  }
+@font-face {
+    font-family: "Poppins_bold";
+    src: local(Poppins_bold), 
+    url(./fonts/Poppins-700.woff2) format("woff2"), 
+    url(./fonts/Poppins-700.woff) format("woff"), 
+  }
+@font-face {
+    font-family: "Roboto_regular";
+    src: local(Roboto_regular), 
+    url(./fonts/Roboto-Regular.woff) format("woff2"), 
+    url(./fonts/Roboto-Regular.woff) format("woff"), 
+  }
+@font-face {
+    font-family: "Roboto_bold";
+    src: local(Roboto_bold), 
+    url(./fonts/Roboto-Bold.woff2) format("woff2"), 
+    url(./fonts/Roboto-Bold.woff) format("woff"), 
+  }
